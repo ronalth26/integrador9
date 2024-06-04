@@ -10,17 +10,20 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Arr;
 use App\Services\NotificationService;
+use Illuminate\Support\Facades\Config;
 class UsuarioController extends Controller
 {
     protected $notificationService;
+    private $msg;
     public function __construct( NotificationService $notificationService)
     {
         $this->notificationService = $notificationService;
+        $this->msg = Config::get('strings.messages');
     }
     public function index()
     {
         $usuarios = User::paginate(5);
-        $this->notificationService->success('Bienvenido a la página incial');
+        $this->notificationService->success( $this->msg['msg1']);
         return view('usuarios.index', compact('usuarios'));
     }
 

@@ -61,6 +61,9 @@
 <script src="{{ asset('web/js/scripts.js') }}"></script>
 <script src="{{ mix('assets/js/profile.js') }}"></script>
 <script src="{{ mix('assets/js/custom/custom.js') }}"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 @yield('page_js')
 @yield('scripts')
 <script>
@@ -78,5 +81,17 @@
             }
         };
     }(jQuery));
+
+    // Mostrar notificaciones usando SweetAlert2
+    @if(session('notification'))
+            Swal.fire({
+                icon: '{{ session('notification.type') }}',
+                title: '{{ session('notification.message') }}',
+                showConfirmButton: false,
+                timer: 3000
+            });
+        @endif
 </script>
+
+
 </html>

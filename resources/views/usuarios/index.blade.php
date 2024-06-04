@@ -60,3 +60,15 @@
     </section>
 @endsection
 
+<script>
+
+@if(session('notification'))
+            Swal.fire({
+                icon: '{{ session('notification.type') }}',
+                title: '{{ session('notification.message') }}',
+                showConfirmButton: false,
+                timer: 3000
+            });
+        @endif
+</script>
+   
