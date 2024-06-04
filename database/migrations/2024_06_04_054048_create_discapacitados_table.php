@@ -13,10 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('blogs', function (Blueprint $table) {
+        Schema::create('discapacitados', function (Blueprint $table) {
             $table->id();
-            $table->string('titulo');
-            $table->text('contenido');
+            $table->foreignId('id_user')->nullable()->constrained('users');
+            $table->integer('id_tipo');
+            $table->string('numero_conadis')->nullable();
+            $table->string('grado')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('blogs');
+        Schema::dropIfExists('discapacitados');
     }
 };

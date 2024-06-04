@@ -37,13 +37,14 @@ class UsuarioController extends Controller
             'email' => 'required|email|unique:users,email',
             'password' => 'required|same:confirm-password',
             'roles' => 'required'
+            
         ]);
 
         $input = $request->all();
         $input['password'] = Hash::make($input['password']);
 
         $user = User::create($input);
-        $user->assignRole($request->input('roles'));
+        $user->assignRole('Discapacitado');
 
         return redirect()->route('usuarios.index');
     }
@@ -74,6 +75,7 @@ class UsuarioController extends Controller
         dd($request->input('roles'));
 
         $input = $request->all();
+        dd($request->roles);
 
         if (!empty($input['password'])) {
             $input['password'] = Hash::make($input['password']);
