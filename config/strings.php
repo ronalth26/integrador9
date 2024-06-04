@@ -3,7 +3,8 @@
 return [
     'messages' => [
         'welcome' => '¡Bienvenido a nuestra aplicación!',
-        'msg1' => 'Bienvenido a la página incial',
+        'msg1' => 'Usuario actualizado correctamente',
+        'alertDelete' => 'Usuario eliminado correctamente',
     ],
     'functions' => [],
     'words' => [

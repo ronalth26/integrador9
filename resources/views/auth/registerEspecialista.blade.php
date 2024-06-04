@@ -11,6 +11,7 @@ Tegistro
     <div class="card-body pt-1">
         <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
             @csrf
+            <input type="hidden" name="tipo" value="3">
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">

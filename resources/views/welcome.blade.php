@@ -418,8 +418,14 @@
             @endif
 
             @if (Route::has('register'))
-            <a href="{{ route('register-especialista') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Registrarse como Especialista</a>
+            <a href="{{ route('usuarios.createEspecialista') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Registrarse como Especialista</a>
             @endif
+
+
+            <!-- <button type="submit" data-url="{{ route('usuarios.createEspecialista') }}">
+                <i class="fas fa-exclamation-circle"></i>
+            </button> -->
+
 
             @endauth
         </div>

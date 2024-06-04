@@ -23,7 +23,7 @@ class UsuarioController extends Controller
     public function index()
     {
         $usuarios = User::paginate(5);
-        $this->notificationService->success( $this->msg['msg1']);
+        // $this->notificationService->success( $this->msg['msg1']);
         return view('usuarios.index', compact('usuarios'));
     }
 
@@ -31,6 +31,12 @@ class UsuarioController extends Controller
     {
         $roles = Role::pluck('name', 'name')->all();
         return view('usuarios.crear', compact('roles'));
+    }
+
+    public function createEspecialista()
+    {
+        $roles = Role::pluck('name', 'name')->all();
+        return view('auth.registerEspecialista', compact('roles'));
     }
 
     public function store(Request $request)
@@ -42,7 +48,6 @@ class UsuarioController extends Controller
             'roles' => 'required'
             
         ]);
-
         $input = $request->all();
         $input['password'] = Hash::make($input['password']);
 
@@ -75,10 +80,8 @@ class UsuarioController extends Controller
             'roles' => 'required'
         ]);
 
-        dd($request->input('roles'));
-
         $input = $request->all();
-        dd($request->roles);
+    
 
         if (!empty($input['password'])) {
             $input['password'] = Hash::make($input['password']);
@@ -93,12 +96,15 @@ class UsuarioController extends Controller
 
         $user->assignRole($request->input('roles'));
 
+        $this->notificationService->success( $this->msg['msg1']);
+
         return redirect()->route('usuarios.index');
     }
 
     public function destroy($id)
     {
         User::find($id)->delete();
+        $this->notificationService->success( $this->msg['alertDelete']);
         return redirect()->route('usuarios.index');
     }
 }
