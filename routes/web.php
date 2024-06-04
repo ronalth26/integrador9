@@ -2,10 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 //Controladores
-use App\Htto\Controllers\HomeController;
-use App\Htto\Controllers\RolController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RolController;
 use App\Http\Controllers\UsuarioController;
-use App\Htto\Controllers\BlogController;
+use App\Http\Controllers\BlogController;
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes

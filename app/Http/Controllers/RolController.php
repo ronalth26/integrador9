@@ -12,12 +12,11 @@ use Illuminate\Support\Facades\DB;
 class RolController extends Controller
 {
     function __construct()
-    {
-        $this->middleware('permission:ver-rol | crear-rol | editar-rol | borrar-rol' , ['only'=>['index']]);
-        $this->middleware('permission:crear-rol' , ['only'=>['create','store']]);
-        $this->middleware('permission:editar-rol' , ['only'=>['edit','update']]);
-        $this->middleware('permission:borrar-rol' , ['only'=>['destroy']]);
-    }
+{
+    // Solo los usuarios con el rol de 'Admin' pueden acceder a estas acciones
+    $this->middleware('role:Admin')->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
+}
+
     /**
      * Display a listing of the resource.
      *

@@ -3,16 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Modelo\Blog;
+use App\Models\Blog;
 class BlogController extends Controller
 {
 
     function __construct()
     {
-        $this->middleware('permission:ver-blog | crear-blog | editar-blog | borrar-blog')->only('index');
-        $this->middleware('permission:crear-blog' , ['only'=>['create','store']]);
-        $this->middleware('permission:editar-blog' , ['only'=>['edit','update']]);
-        $this->middleware('permission:borrar-blog' , ['only'=>['destroy']]);
+        // Solo los usuarios con el rol de 'Admin' pueden acceder a estas acciones
+        $this->middleware('role:Admin')->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
     }
     /**
      * Display a listing of the resource.
@@ -80,16 +78,16 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        request()->validate([
-            'titulo' => 'required',
-            'conteido' => 'required'
+    // public function update(Request $request, $id)
+    // {
+    //     request()->validate([
+    //         'titulo' => 'required',
+    //         'conteido' => 'required'
 
-        ]);
-        $blog->update($request->all());
-        return redirect()->route('blogs.index');
-    }
+    //     ]);
+    //     $blog->update($request->all());
+    //     return redirect()->route('blogs.index');
+    // }
 
     /**
      * Remove the specified resource from storage.
