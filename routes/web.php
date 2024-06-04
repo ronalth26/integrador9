@@ -34,3 +34,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::resource('usuarios', UsuarioController::class);
     Route::resource('blogs', BLogController::class);
 });
+
+Route::get('/register-especialista', function () {
+    return view('auth.registerEspecialista');
+})->name('register-especialista');

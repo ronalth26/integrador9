@@ -9,12 +9,18 @@ use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Arr;
-
+use App\Services\NotificationService;
 class UsuarioController extends Controller
 {
+    protected $notificationService;
+    public function __construct( NotificationService $notificationService)
+    {
+        $this->notificationService = $notificationService;
+    }
     public function index()
     {
         $usuarios = User::paginate(5);
+        $this->notificationService->success('Bienvenido a la página incial');
         return view('usuarios.index', compact('usuarios'));
     }
 
@@ -64,6 +70,8 @@ class UsuarioController extends Controller
             'password' => 'same:confirm-password',
             'roles' => 'required'
         ]);
+
+        dd($request->input('roles'));
 
         $input = $request->all();
 
