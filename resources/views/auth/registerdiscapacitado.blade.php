@@ -13,7 +13,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="name">Nombre Completo:</label><span class="text-danger">*</span>
-                            <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" tabindex="1" placeholder="Ingresa Nombre Completo" value="{{ old('name') }}" autofocus required>
+                            <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" tabindex="1" placeholder="Enter Full Name" value="{{ old('name') }}" autofocus required>
                             <div class="invalid-feedback">
                                 {{ $errors->first('name') }}
                             </div>
@@ -22,7 +22,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="email">Email:</label><span class="text-danger">*</span>
-                            <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="Ingresa Dirección de Correo" name="email" tabindex="1" value="{{ old('email') }}" required autofocus>
+                            <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="Enter Email address" name="email" tabindex="1" value="{{ old('email') }}" required autofocus>
                             <div class="invalid-feedback">
                                 {{ $errors->first('email') }}
                             </div>
@@ -31,7 +31,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="password" class="control-label">Contraseña:</label><span class="text-danger">*</span>
-                            <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid': '' }}" placeholder="Establece contraseña" name="password" tabindex="2" required>
+                            <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid': '' }}" placeholder="Set account password" name="password" tabindex="2" required>
                             <div class="invalid-feedback">
                                 {{ $errors->first('password') }}
                             </div>
@@ -40,7 +40,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="password_confirmation" class="control-label">Confirma Contraseña:</label><span class="text-danger">*</span>
-                            <input id="password_confirmation" type="password" placeholder="Confirma contraseña de cuenta" class="form-control{{ $errors->has('password_confirmation') ? ' is-invalid': '' }}" name="password_confirmation" tabindex="2">
+                            <input id="password_confirmation" type="password" placeholder="Confirm account password" class="form-control{{ $errors->has('password_confirmation') ? ' is-invalid': '' }}" name="password_confirmation" tabindex="2">
                             <div class="invalid-feedback">
                                 {{ $errors->first('password_confirmation') }}
                             </div>
@@ -50,7 +50,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="conadis_number">Número CONADIS:</label><span class="text-danger">*</span>
-                            <input id="conadis_number" type="text" class="form-control{{ $errors->has('conadis_number') ? ' is-invalid': '' }}" name="conadis_number" placeholder="Ingresa numero de CONADIS" value="{{ old('conadis_number') }}" required>
+                            <input id="conadis_number" type="text" class="form-control{{ $errors->has('conadis_number') ? ' is-invalid': '' }}" name="conadis_number" placeholder="Enter CONADIS Number" value="{{ old('conadis_number') }}" required>
                             <div class="invalid-feedback">
                                 {{ $errors->first('conadis_number') }}
                             </div>
@@ -60,7 +60,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="disability_type">Tipo de Discapacidad:</label><span class="text-danger">*</span>
-                            <input id="disability_type" type="text" class="form-control{{ $errors->has('disability_type') ? ' is-invalid': '' }}" name="disability_type" placeholder="Ingresa Tipo de Discapacidad" value="{{ old('disability_type') }}" required>
+                            <input id="disability_type" type="text" class="form-control{{ $errors->has('disability_type') ? ' is-invalid': '' }}" name="disability_type" placeholder="Enter Disability Type" value="{{ old('disability_type') }}" required>
                             <div class="invalid-feedback">
                                 {{ $errors->first('disability_type') }}
                             </div>
@@ -70,7 +70,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="disability_degree">Grado de Discapacidad:</label><span class="text-danger">*</span>
-                            <input id="disability_degree" type="text" class="form-control{{ $errors->has('disability_degree') ? ' is-invalid': '' }}" name="disability_degree" placeholder="Ingresa Grado de Discapacidad" value="{{ old('disability_degree') }}" required>
+                            <input id="disability_degree" type="text" class="form-control{{ $errors->has('disability_degree') ? ' is-invalid': '' }}" name="disability_degree" placeholder="Enter Disability Degree" value="{{ old('disability_degree') }}" required>
                             <div class="invalid-feedback">
                                 {{ $errors->first('disability_degree') }}
                             </div>
@@ -79,7 +79,7 @@
                     <div class="col-md-12 mt-4">
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                                Registrar
+                                Register
                             </button>
                         </div>
                     </div>
