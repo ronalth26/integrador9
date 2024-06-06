@@ -12,12 +12,13 @@ return new class extends Migration
      * @return void
      */
     public function up()
-{
-    Schema::table('permissions', function (Blueprint $table) {
-        $table->string('description')->nullable();
-    });
-}
-
+    {
+        Schema::create('tipo_especialidad', function (Blueprint $table) {
+            $table->id();
+            $table->string('nombre');
+            $table->timestamps();
+        });
+    }
 
     /**
      * Reverse the migrations.
@@ -26,8 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('permissions', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('tipo_especialidad');
     }
 };

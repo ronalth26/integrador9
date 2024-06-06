@@ -14,8 +14,8 @@
     <link href="{{ asset('assets/css/sweetalert.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ asset('assets/css/select2.min.css') }}" rel="stylesheet" type="text/css"/>
 
-@yield('page_css')
-<!-- Template CSS -->
+    @yield('page_css')
+    <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('web/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('web/css/components.css')}}">
     @yield('page_css')
@@ -47,7 +47,6 @@
 @include('profile.change_password')
 @include('profile.edit_profile')
 
-</body>
 <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
 <script src="{{ asset('assets/js/popper.min.js') }}"></script>
 <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
@@ -61,15 +60,20 @@
 <script src="{{ asset('web/js/scripts.js') }}"></script>
 <script src="{{ mix('assets/js/profile.js') }}"></script>
 <script src="{{ mix('assets/js/custom/custom.js') }}"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 @yield('page_js')
 @yield('scripts')
+
 <script>
-    let loggedInUser =@json(\Illuminate\Support\Facades\Auth::user());
+    let loggedInUser = @json(\Illuminate\Support\Facades\Auth::user());
     let loginUrl = '{{ route('login') }}';
-    const userUrl = '{{url('users')}}';
+    const userUrl = '{{ url('users') }}';
+
     // Loading button plugin (removed from BS4)
-    (function ($) {
-        $.fn.button = function (action) {
+    (function($) {
+        $.fn.button = function(action) {
             if (action === 'loading' && this.data('loading-text')) {
                 this.data('original-text', this.html()).html(this.data('loading-text')).prop('disabled', true);
             }
@@ -78,5 +82,43 @@
             }
         };
     }(jQuery));
+
+    // Mostrar notificaciones usando SweetAlert2
+    @if(session('notification'))
+        var notificationType = '{{ session('notification.type') }}';
+        var notificationMessage = '{{ session('notification.message') }}';
+    @else
+        var notificationType = null;
+        var notificationMessage = null;
+    @endif
+
+    if (notificationType && notificationMessage) {
+        Swal.fire({
+            icon: notificationType,
+            title: notificationMessage,
+            showConfirmButton: false,
+            timer: 3000
+        });
+    }
+
+    // Script de confirmación de eliminación
+    function confirmDelete(userId) {
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "¡No podrás revertir esto!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, eliminarlo!',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('delete-form-' + userId).submit();
+            }
+        })
+    }
 </script>
+
+</body>
 </html>

@@ -36,3 +36,5 @@ Route::group(['middleware' => ['auth']], function(){
     Route::resource('blogs', BLogController::class);
     Route::resource('feedbacks', FeedbackController::class);
 });
+
+Route::get('usuarios.createEspecialista', [UsuarioController::class, 'createEspecialista'])->name('usuarios.createEspecialista');

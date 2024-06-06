@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 class RegisterController extends Controller
 {
@@ -64,10 +65,21 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $tipo = isset($data['tipo']) ? $data['tipo'] : 2; 
+
+        $userNew = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+        $user = User::find($userNew->id);
+        DB::table('model_has_roles')->where('model_id', $userNew->id)->delete();
+
+        if ($tipo == 2) {
+            $user->assignRole('Discapacitado');
+        } elseif ($tipo == 3) {
+            $user->assignRole('Especialista');
+        }
+        return $userNew;
     }
 }

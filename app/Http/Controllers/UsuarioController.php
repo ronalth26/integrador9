@@ -9,12 +9,21 @@ use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Arr;
-
+use App\Services\NotificationService;
+use Illuminate\Support\Facades\Config;
 class UsuarioController extends Controller
 {
+    protected $notificationService;
+    private $msg;
+    public function __construct( NotificationService $notificationService)
+    {
+        $this->notificationService = $notificationService;
+        $this->msg = Config::get('strings.messages');
+    }
     public function index()
     {
         $usuarios = User::paginate(5);
+        // $this->notificationService->success( $this->msg['msg1']);
         return view('usuarios.index', compact('usuarios'));
     }
 
@@ -24,6 +33,12 @@ class UsuarioController extends Controller
         return view('usuarios.crear', compact('roles'));
     }
 
+    public function createEspecialista()
+    {
+        $roles = Role::pluck('name', 'name')->all();
+        return view('auth.registerEspecialista', compact('roles'));
+    }
+
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -31,13 +46,13 @@ class UsuarioController extends Controller
             'email' => 'required|email|unique:users,email',
             'password' => 'required|same:confirm-password',
             'roles' => 'required'
+            
         ]);
-
         $input = $request->all();
         $input['password'] = Hash::make($input['password']);
 
         $user = User::create($input);
-        $user->assignRole($request->input('roles'));
+        $user->assignRole('Discapacitado');
 
         return redirect()->route('usuarios.index');
     }
@@ -66,6 +81,7 @@ class UsuarioController extends Controller
         ]);
 
         $input = $request->all();
+    
 
         if (!empty($input['password'])) {
             $input['password'] = Hash::make($input['password']);
@@ -80,12 +96,15 @@ class UsuarioController extends Controller
 
         $user->assignRole($request->input('roles'));
 
+        $this->notificationService->success( $this->msg['msg1']);
+
         return redirect()->route('usuarios.index');
     }
 
     public function destroy($id)
     {
         User::find($id)->delete();
+        $this->notificationService->success( $this->msg['alertDelete']);
         return redirect()->route('usuarios.index');
     }
 }
