@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Models\Especialista;
+use App\Models\Discapacitado;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -12,16 +14,6 @@ use Illuminate\Support\Facades\DB;
 
 class RegisterController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Register Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
-    |
-    */
 
     use RegistersUsers;
 
@@ -65,22 +57,39 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        
-        $tipo = isset($data['tipo']) ? $data['tipo'] : 2; 
+        $tipo = isset($data['tipo']) ? $data['tipo'] : 2;
 
         $userNew = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'ape_pat' => $data['ape_pat'],
+            'ape_mat' => $data['ape_mat'],
+            'fec_nacimiento' => $data['fec_nacimiento'],
+            'direccion' => $data['direccion'],
             'password' => Hash::make($data['password']),
         ]);
-        $user = User::find($userNew->id);
+
         DB::table('model_has_roles')->where('model_id', $userNew->id)->delete();
 
-        if ($tipo == 2) {
-            $user->assignRole('Discapacitado');
-        } elseif ($tipo == 3) {
-            $user->assignRole('Especialista');
+        if ($tipo == 3) {
+            Discapacitado::create([
+                'id' => $data['conadis_number'],
+                'id_user' => $userNew->id,
+                'id_tipo' => $data['id_tipo'],
+                'grado' => $data['grado'],
+            ]);
+
+            $userNew->assignRole('Discapacitado');
+        } elseif ($tipo == 2) {
+
+            Especialista::create([
+                'id_user' => $userNew->id,
+                'tipo_id' => $data['tipo_id'],
+                'licencia' => $data['licencia'],
+            ]);
+            $userNew->assignRole('Especialista');
         }
+
         return $userNew;
     }
 }

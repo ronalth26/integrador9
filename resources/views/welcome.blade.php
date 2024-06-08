@@ -412,14 +412,18 @@
             <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
             @else
             <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
-
+<!-- 
             @if (Route::has('register'))
             <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
-            @endif
-
+            @endif -->
+<!-- 
             @if (Route::has('register'))
             <a href="{{ route('register-especialista') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Registrarse como Especialista</a>
-            @endif
+            @endif -->
+
+            <a class="btn btn-warning" href="{{ route('discapacitado.index') }}" style="color:white">Registrar Discapacitado</a>
+            <a class="btn btn-warning" href="{{ route('especialista.index') }}" style="color:white">Registrar Especialista</a>
+
             @endauth
         </div>
         @endif

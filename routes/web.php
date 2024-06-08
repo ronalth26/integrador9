@@ -5,7 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\DiscapacitadoController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\EspecialistaController;
 use App\Http\Controllers\FeedbackController;
 use App\Models\Feedback;
 use Illuminate\Support\Facades\Auth;
@@ -40,6 +42,10 @@ Route::group(['middleware' => ['auth']], function(){
 });
 
 Route::get('usuarios.createEspecialista', [UsuarioController::class, 'createEspecialista'])->name('usuarios.createEspecialista');
+
+Route::get('/index-discapacitado', [DiscapacitadoController::class,'index'])->name('discapacitado.index');
+Route::get('/index-especialista', [EspecialistaController::class,'index'])->name('especialista.index');
+
 
 Route::get('/register-especialista', function () {
     return view('auth.registerEspecialista');
