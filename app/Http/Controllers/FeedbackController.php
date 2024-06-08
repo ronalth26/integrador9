@@ -69,13 +69,12 @@ class FeedbackController extends Controller
 
     public function showHistorial($id)
     {
-        //$feedbacks = Feedback::where('id_user', Auth::user()->id)->get();
-        $this->notificationService->success($this->msg['feedbackMsgSuccess']);
-        $exam = "asdasd"; // Puedes definir tu variable aquí
-        $view = view('feedbacks.modal.showHistorial', compact('exam'));
+        $exam = "slinky"; // Puedes definir tu variable aquí
+        $feedbacks=Feedback::where('id_user',Auth::id())->get();
+        $view = view('feedbacks.modal.showHistorial', compact('feedbacks'));
 
         if (request()->ajax()) {
-            return response()->json(['html' => $view->render(), 'exam' => $exam]);
+            return response()->json(['html' => $view->render()]);
         } else {
             return $view;
         }

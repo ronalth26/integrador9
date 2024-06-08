@@ -8,12 +8,7 @@
     </div>
 </section>
 
-<!-- <button id="historialButton" class="btn btn-primary mb-3" data-toggle="modal" data-target="#feedbackModalhistorial">Historial Feedbacks</button>
-
-<button type="submit" class="add_proceso load-content5 btn-primary" data-toggle="modal" data-target="#feedbackModalhistorial" data-url="{{route('feedbacks.show', '1') }}">
-</button> -->
-
-<button type="submit" class="add_proceso load-content5 btn-primary" data-toggle="modal" data-target="#showModal5" data-url="{{ route('feedbacks.showHistorial', ['id' => 1]) }}">
+<button type="button" class="add_proceso load-content5 btn-primary" data-toggle="modal" data-target="#showModal5" data-url="{{ route('feedbacks.showHistorial', ['id' => 1]) }}">
     Historial Feedbacks
 </button>
 
@@ -22,10 +17,12 @@
     <div class="card-body">
         <table class="table table-striped mt-2">
             <thead style="background-color: #6777ef;">
-                <th style="color:#fff;">
-                    <h4>Enviemos una recomendación!!</h4>
-                </th>
-                <th></th>
+                <tr>
+                    <th style="color:#fff;">
+                        <h4>Enviemos una recomendación!!</h4>
+                    </th>
+                    <th></th>
+                </tr>
             </thead>
             <tbody>
                 <tr>
@@ -56,28 +53,15 @@
         </div>
     </div>
 </div>
-
-<button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#feedbackModal">
-    Enviar Feedback
-</button>
-
 {!! Form::close() !!}
 
 @include('feedbacks.modal.saveFeedback')
-<!-- @include('feedbacks.modal.showHistorial') -->
 @include('feedbacks.modal.showMain')
+
 
 @endsection
 
 @section('js')
-
-<script>
-    $(document).ready(function() {
-        $('#historialButton').on('click', function() {
-            $('#feedbackModalhistorial').modal('toggle');
-        });
-    });
-</script>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>

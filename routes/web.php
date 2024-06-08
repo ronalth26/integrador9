@@ -30,7 +30,8 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('feedbacks/{id}/showHistorial', [FeedbackController::class, 'showHistorial'])->name('feedbacks.showHistorial')->middleware('auth');
+Route::get('feedbacks/showHistorial/{id}', [FeedbackController::class, 'showHistorial'])->name('feedbacks.showHistorial')->middleware('auth');
+
 Route::group(['middleware' => ['auth']], function(){
     Route::resource('roles', RolController::class);
     Route::resource('usuarios', UsuarioController::class);
