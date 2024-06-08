@@ -65,6 +65,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        
         $tipo = isset($data['tipo']) ? $data['tipo'] : 2; 
 
         $userNew = User::create([
