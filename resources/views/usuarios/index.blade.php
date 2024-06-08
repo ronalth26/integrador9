@@ -38,7 +38,7 @@
                                     <td>
                                         <a class="btn btn-info" href="{{ route('usuarios.edit', $usuario->id) }}">Editar</a>
 
-                                        <button class="btn btn-danger" onclick="confirmDelete({{ $usuario->id }})">Borrar</button>
+                                        <!-- <button class="btn btn-danger" onclick="confirmDelete({{ $usuario->id }})">Borrar</button> -->
                                         <form id="delete-form-{{ $usuario->id }}" action="{{ route('usuarios.destroy', $usuario->id) }}" method="POST" style="display: none;">
                                             @csrf
                                             @method('DELETE')
