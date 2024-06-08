@@ -7,6 +7,7 @@ use App\Http\Controllers\RolController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\FeedbackController;
+use App\Models\Feedback;
 use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +30,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-
+Route::get('feedbacks/{id}/showHistorial', [FeedbackController::class, 'showHistorial'])->name('feedbacks.showHistorial')->middleware('auth');
 Route::group(['middleware' => ['auth']], function(){
     Route::resource('roles', RolController::class);
     Route::resource('usuarios', UsuarioController::class);

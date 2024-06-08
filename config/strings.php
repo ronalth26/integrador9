@@ -5,6 +5,7 @@ return [
         'welcome' => '¡Bienvenido a nuestra aplicación!',
         'msg1' => 'Usuario actualizado correctamente',
         'alertDelete' => 'Usuario eliminado correctamente',
+        'feedbackMsgSuccess' => 'Feedback enviado correctamente',
     ],
     'functions' => [],
     'words' => [
