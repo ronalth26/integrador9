@@ -11,19 +11,19 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Arr;
 use App\Services\NotificationService;
 use Illuminate\Support\Facades\Config;
+
 class UsuarioController extends Controller
 {
     protected $notificationService;
     private $msg;
-    public function __construct( NotificationService $notificationService)
+    public function __construct(NotificationService $notificationService)
     {
         $this->notificationService = $notificationService;
         $this->msg = Config::get('strings.messages');
     }
     public function index()
     {
-        $usuarios = User::paginate(5);
-        // $this->notificationService->success( $this->msg['msg1']);
+        $usuarios = User::where('estado', 1)->paginate(5);
         return view('usuarios.index', compact('usuarios'));
     }
 
@@ -46,7 +46,7 @@ class UsuarioController extends Controller
             'email' => 'required|email|unique:users,email',
             'password' => 'required|same:confirm-password',
             'roles' => 'required'
-            
+
         ]);
         $input = $request->all();
         $input['password'] = Hash::make($input['password']);
@@ -66,22 +66,27 @@ class UsuarioController extends Controller
     {
         $user = User::find($id);
         $roles = Role::pluck('name', 'name')->all();
-        $userRole = $user->roles->pluck('name', 'name')->all();
-
-        return view('usuarios.editar', compact('user', 'roles', 'userRole'));
+        $userRole = $user->roles->pluck('name')->all();
+        $view = view('usuarios.editar', compact('user', 'roles', 'userRole'));
+        $view2 = view('usuarios.modal.editar', compact('user', 'roles', 'userRole'));
+        if (request()->ajax()) {
+            return response()->json(['html' => $view2->render()]);
+        } else {
+            return $view;
+        }
     }
+
 
     public function update(Request $request, $id)
     {
         $this->validate($request, [
             'name' => 'required',
-            'email' => 'required|email|unique:users,email,'.$id,
-            'password' => 'same:confirm-password',
-            'roles' => 'required'
+            'email' => 'required|email|unique:users,email,' . $id,
+            // 'password' => 'same:confirm-password',
         ]);
 
         $input = $request->all();
-    
+
 
         if (!empty($input['password'])) {
             $input['password'] = Hash::make($input['password']);
@@ -96,15 +101,15 @@ class UsuarioController extends Controller
 
         $user->assignRole($request->input('roles'));
 
-        $this->notificationService->success( $this->msg['msg1']);
+        $this->notificationService->success($this->msg['msg1']);
 
         return redirect()->route('usuarios.index');
     }
 
     public function destroy($id)
     {
-        User::find($id)->delete();
-        $this->notificationService->success( $this->msg['alertDelete']);
+        User::where('id', $id)->update(['estado' => 0]);
+        $this->notificationService->success($this->msg['alertDelete']);
         return redirect()->route('usuarios.index');
     }
 }

@@ -49,6 +49,7 @@
     </div>
 </div>
 
+@include('feedbacks.modal.showMain')
 @include('profile.change_password')
 @include('profile.edit_profile')
 
@@ -65,6 +66,8 @@
 <script src="{{ asset('web/js/scripts.js') }}"></script>
 <script src="{{ mix('assets/js/profile.js') }}"></script>
 <script src="{{ mix('assets/js/custom/custom.js') }}"></script>
+
+
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 

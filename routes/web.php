@@ -50,3 +50,4 @@ Route::get('/index-especialista', [EspecialistaController::class,'index'])->name
 Route::get('/register-especialista', function () {
     return view('auth.registerEspecialista');
 })->name('register-especialista');
+

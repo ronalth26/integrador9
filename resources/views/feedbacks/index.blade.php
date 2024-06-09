@@ -56,8 +56,6 @@
 {!! Form::close() !!}
 
 @include('feedbacks.modal.saveFeedback')
-@include('feedbacks.modal.showMain')
-
 
 @endsection
 
