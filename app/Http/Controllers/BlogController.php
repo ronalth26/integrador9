@@ -10,7 +10,7 @@ class BlogController extends Controller
     function __construct()
     {
         // Solo los usuarios con el rol de 'Admin' pueden acceder a estas acciones
-        $this->middleware('role:Admin')->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
+        $this->middleware('can:usuarios')->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
     }
     /**
      * Display a listing of the resource.

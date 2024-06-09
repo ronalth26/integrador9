@@ -22,6 +22,10 @@ class RoleSeeder extends Seeder
         $role2 = Role::create(['name' => 'Discapacitado']);
         $role3 = Role::create(['name' => 'Especialista']); //crear, modificar o editar 
 
+        Permission::create(['name' => 'admin', 'description' => 'ParaAdmin'])->syncRoles([$role1]);
+        Permission::create(['name' => 'usuarios', 'description' => 'ParaEspecialistaDiscapacitado'])->syncRoles([$role2, $role3]);
+        Permission::create(['name' => 'especialista', 'description' => 'ParaEspecialista'])->syncRoles([$role3]);
+        Permission::create(['name' => 'discapacitado', 'description' => 'ParaDiscapacitado'])->syncRoles([$role2]);
 
 
         Permission::create(['name' => 'usuarios.index', 'description' => 'VisualizarUsuarios'])->syncRoles([$role2]);

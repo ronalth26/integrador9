@@ -97,9 +97,10 @@ class UsuarioController extends Controller
         $user = User::find($id);
         $user->update($input);
 
-        DB::table('model_has_roles')->where('model_id', $id)->delete();
-
-        $user->assignRole($request->input('roles'));
+        if ($request->has('roles')) {
+            DB::table('model_has_roles')->where('model_id', $id)->delete();
+            $user->assignRole($request->input('roles'));
+        }
 
         $this->notificationService->success($this->msg['msg1']);
 

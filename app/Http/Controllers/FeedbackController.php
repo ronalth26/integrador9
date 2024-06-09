@@ -19,6 +19,12 @@ class FeedbackController extends Controller
 
     public function __construct(NotificationService $notificationService)
     {
+        $this->middleware('can:usuarios')->only('index');
+        $this->middleware('can:usuarios')->only('store');
+        $this->middleware('can:usuarios')->only('destroy');
+        $this->middleware('can:usuarios')->only('edit');
+        $this->middleware('can:usuarios')->only('update');
+
         $this->notificationService = $notificationService;
         $this->msg = Config::get('strings.messages');
     }
