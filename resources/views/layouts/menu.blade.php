@@ -22,10 +22,10 @@
         <i class=" fas fa-comment"></i><span>Feddback</span>
     </a>
     @endcan
-    <a class="nav-link" href="/contactar">
+    <a class="nav-link" href="/contactos">
         <i class="fas fa-envelope"></i><span>Contactar</span>
     </a>
-    <a class="nav-link" href="/seguimiento">
+    <a class="nav-link" href="/seguimientos">
         <i class="fas fa-chart-line"></i><span>Seguimiento</span>
     </a>
     <a class="nav-link" href="/publicar">

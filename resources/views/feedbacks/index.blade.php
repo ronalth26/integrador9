@@ -55,7 +55,7 @@
 </div>
 {!! Form::close() !!}
 
-@include('feedbacks.modal.saveFeedback')
+@include('feedbacks.modal.saveFeedback')    
 
 @endsection
 
