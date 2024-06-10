@@ -25,9 +25,11 @@
             <i class="fas fa-users mr-2" style="font-size: 1.25em;"></i> <!-- Icono de usuarios -->
             Contactar con usuarios
         </h3>
-        <a href="" class="btn btn-primary">
-            Ver Solicitudes
+        <!-- Botón para abrir el modal -->
+        <a class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#showModal5" data-url="{{ route('contactos.solicitud', ['id' => 1 ]) }}">
+            Solicitudes
         </a>
+
     </div>
 </section>
 
@@ -79,9 +81,10 @@
                     <div class="d-flex justify-content-between align-items-center">
 
                         @if (!$contacto_encontrado->contains($usuario->id))
-                        <a class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#showModal5" data-url="{{ route('contactos.show', ['id' => $usuario->id ]) }}">
+                        <a class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#showModal1" data-url="{{ route('contactos.show', ['id' => $usuario->id ]) }}">
                             Contactar
                         </a>
+
                         @else
                         <p class="text-primary">Pendiente</p>
                         @endif

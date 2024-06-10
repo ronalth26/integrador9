@@ -41,7 +41,7 @@ class ContactoController extends Controller
             ->pluck('id_receptor');
 
 
-        return view('contactos.index', compact('usuarios','contacto_encontrado'));
+        return view('contactos.index', compact('usuarios', 'contacto_encontrado'));
     }
 
     public function store(Request $request)
@@ -84,5 +84,53 @@ class ContactoController extends Controller
         } else {
             return $view;
         }
+    }
+
+    public function solicitud(Request $request)
+    {
+        // Obtén las solicitudes del usuario autenticado que están en estado 0
+        $solicitudes = Contacto::where('id_receptor', auth()->user()->id)
+            ->where('estado', 0)
+            ->get();
+
+        // Crea la vista con las solicitudes
+        $view = view('contactos.modal.solicitud', compact('solicitudes'));
+
+        // Si la solicitud es ajax, retorna la vista renderizada en formato JSON
+        if ($request->ajax()) {
+            return response()->json(['html' => $view->render()]);
+        } else {
+            // Si no es ajax, retorna la vista directamente
+            return $view;
+        }
+    }
+
+    public function estado($id, $opcion)
+    {
+
+        $emisor = Contacto::where('id_receptor', auth()->user()->id)
+            ->where('id_emisor', $id) // Corregido 'id_emisor'
+            ->where('estado', 0)
+            ->first(); // Obtener el primer resultado
+
+
+        if ($emisor) {
+            // Si se encuentra el contacto, actualiza su estado
+            $emisor->update(['estado' => $opcion]);
+            // Opcionalmente, puedes hacer cualquier otra cosa que necesites con $emisor aquí
+        } else {
+        }
+
+
+        $usuarios = User::where('estado', 1)
+            ->whereHas('roles', function ($query) {
+                $query->whereIn('name', ['especialista', 'discapacitado']);
+            })
+            ->with('roles')
+            ->get();
+
+        $this->notificationService->success('Solicitud aceptado correctamente');
+
+        return redirect()->route('contactos.index', compact('usuarios'));
     }
 }
