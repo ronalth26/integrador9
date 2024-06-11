@@ -43,11 +43,9 @@
                     <a href="#about-us">
                         <div class="read-more">Leer Más ↓</div>
                     </a>
-
                 </div>
                 <div class="arrow-down"></div>
             </div>
-
         </section>
 
         <!-- section menu mobile -->

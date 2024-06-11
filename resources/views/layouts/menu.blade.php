@@ -12,23 +12,31 @@
         <i class=" fas fa-user-lock"></i><span>Roles</span>
     </a>
     @endcan
+
     @can('usuarios')
     <a class="nav-link" href="/blogs">
         <i class=" fas fa-blog"></i><span>Blogs</span>
     </a>
     @endcan
+
     @can('usuarios')
     <a class="nav-link" href="/feedbacks">
         <i class=" fas fa-comment"></i><span>Feddback</span>
     </a>
     @endcan
+    @can('usuarios')
     <a class="nav-link" href="/contactos">
         <i class="fas fa-envelope"></i><span>Contactar</span>
     </a>
+    @endcan
+    @can('usuarios')
     <a class="nav-link" href="/seguimientos">
         <i class="fas fa-chart-line"></i><span>Seguimiento</span>
     </a>
+    @endcan
+    @can('usuarios')
     <a class="nav-link" href="/publicar">
         <i class="fas fa-edit"></i><span>Publicar</span>
     </a>
+    @endcan
 </li>
