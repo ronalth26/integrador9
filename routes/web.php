@@ -41,6 +41,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::resource('feedbacks', FeedbackController::class);
 });
 
+
 Route::get('usuarios.createEspecialista', [UsuarioController::class, 'createEspecialista'])->name('usuarios.createEspecialista');
 
 Route::get('/index-discapacitado', [DiscapacitadoController::class,'index'])->name('discapacitado.index');
