@@ -97,6 +97,8 @@
                         <li><a href="{{ url('/home') }}">HOME</a></li>
                     @else
                         <li><a href="{{ route('login') }}">LOGIN</a></li>
+                        <li><a href="{{ route('discapacitado.index') }}">DISCAPACITADO</a>/li>
+                        <li><a href="{{ route('especialista.index') }}">ESPECIALISTA</a></li>
                     @endauth
                 </ul>
             </div>
