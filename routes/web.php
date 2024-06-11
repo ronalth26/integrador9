@@ -7,6 +7,7 @@ use App\Http\Controllers\RolController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\DiscapacitadoController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\ContactoController;
 use App\Http\Controllers\EspecialistaController;
 use App\Http\Controllers\FeedbackController;
 use App\Models\Feedback;
@@ -39,15 +40,20 @@ Route::group(['middleware' => ['auth']], function(){
     Route::resource('usuarios', UsuarioController::class);
     Route::resource('blogs', BLogController::class);
     Route::resource('feedbacks', FeedbackController::class);
+    Route::resource('contactos', ContactoController::class);
 });
 
 
 Route::get('usuarios.createEspecialista', [UsuarioController::class, 'createEspecialista'])->name('usuarios.createEspecialista');
 
 Route::get('/index-discapacitado', [DiscapacitadoController::class,'index'])->name('discapacitado.index');
-Route::get('/index-especialista', [EspecialistaController::class,'index'])->name('especialista.index');
+Route::get('/index-especialista', [ContactoController::class,'index'])->name('especialista.index');
 
+Route::get('/contactos/{id}', [ContactoController::class,'show'])->name('contactos.show');
+Route::get('/contactos/solicitud/{id}', [ContactoController::class, 'solicitud'])->name('contactos.solicitud');
+Route::get('/contactos/estado/{id}/{opcion}', [ContactoController::class,'estado'])->name('contactos.estado');
 
 Route::get('/register-especialista', function () {
     return view('auth.registerEspecialista');
 })->name('register-especialista');
+

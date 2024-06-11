@@ -1,5 +1,3 @@
-
-ChatGPT
 <div id="EditProfileModal" class="modal fade" role="dialog">
     <div class="modal-dialog modal-lg">
         <!-- Contenido del Modal -->
@@ -8,55 +6,55 @@ ChatGPT
                 <h5 class="modal-title">Editar Perfil</h5>
                 <button type="button" aria-label="Cerrar" class="close outline-none" data-dismiss="modal">×</button>
             </div>
-            <form method="POST" id="editProfileForm" enctype="multipart/form-data">
-                <div class="alert alert-info">
-                    Nota: Esto es solo la interfaz de usuario. necesitas desarrollar el Backend para actualizar
-                </div>
-                <div class="modal-body">
-                    <div class="alert alert-danger d-none" id="editProfileValidationErrorsBox"></div>
-                    <input type="hidden" name="user_id" id="pfUserId">
-                    <input type="hidden" name="is_active" value="1">
-                    {{csrf_field()}}
-                    <div class="row">
-                        <div class="form-group col-sm-6">
-                            <label>Nombre:</label><span class="required">*</span>
-                            <input type="text" name="name" id="pfName" class="form-control" required autofocus
-                                   tabindex="1">
-                        </div>
-                        <div class="form-group col-sm-6 d-flex">
-                            <div class="col-sm-4 col-md-6 pl-0 form-group">
-                                <label>Imagen de Perfil:</label>
-                                <br>
-                                <label
-                                        class="image__file-upload btn btn-primary text-white"
-                                        tabindex="2"> Elegir
-                                    <input type="file" name="photo" id="pfImage" class="d-none">
-                                </label>
+            {!! Form::model(auth()->user(), ['method' => 'PATCH', 'route' => ['usuarios.update',auth()->user()->id]]) !!}
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <label for="name">Nombre</label>
+                                        {!! Form::text('name', auth()->user()->name, ['class' => 'form-control']) !!}
+                                    </div>
+                                </div>
+                                
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <label for="ape_pat">Apellido Paterno</label>
+                                        {!! Form::text('ape_pat',auth()->user()->ape_pat, ['class' => 'form-control']) !!}
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <label for="ape_mat">Apellido Materno</label>
+                                        {!! Form::text('ape_mat', auth()->user()->ape_mat, ['class' => 'form-control']) !!}
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <label for="email">E-mail</label>
+                                        {!! Form::text('email', auth()->user()->email, ['class' => 'form-control']) !!}
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <label for="fec_nacimiento">Fecha de Nacimiento</label>
+                                        {!! Form::date('fec_nacimiento', auth()->user()->fec_nacimiento, ['class' => 'form-control']) !!}
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <label for="direccion">Dirección</label>
+                                        {!! Form::text('direccion', auth()->user()->direccion, ['class' => 'form-control']) !!}
+                                    </div>
+                                </div>
+                                     
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <button type="submit" class="btn btn-primary">Guardar</button>
+                                </div>
                             </div>
-                            <div class="col-sm-3 preview-image-video-container float-right mt-1">
-                                <img id='edit_preview_photo'
-                                     class="img-thumbnail user-img user-profile-img profilePicture"
-                                     src="{{asset('img/logo.png')}}"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-sm-6">
-                            <label>Email:</label><span class="required">*</span>
-                            <input type="text" name="email" id="pfEmail" class="form-control" required tabindex="3">
-                        </div>
-                    </div>
-                    <div class="text-right">
-                        <button type="submit" class="btn btn-primary" id="btnPrEditSave"
-                                data-loading-text="<span class='spinner-border spinner-border-sm'></span> Procesando..."
-                                tabindex="5">Guardar
-                        </button>
-                        <button type="button" class="btn btn-light ml-1 edit-cancel-margin margin-left-5"
-                                data-dismiss="modal">Cancelar
-                        </button>
-                    </div>
-                </div>
-            </form>
+                            {!! Form::close() !!}
         </div>
     </div>
 </div>

@@ -12,56 +12,88 @@
                         <div class="card-body">
 
                             @if ($errors->any())
-                            <div class="alert alert-dark alert-dismissible fade show" role="alert">
-                                <strong>¡Revise los campos!</strong>
+                                <div class="alert alert-dark alert-dismissible fade show" role="alert">
+                                    <strong>¡Revise los campos!</strong>
                                     @foreach ($errors->all() as $error)
-                                        <span class="badge badge-danger">{{$error}}</span>
+                                        <span class="badge badge-danger">{{ $error }}</span>
                                     @endforeach
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
-                            </div>
+                                </div>
                             @endif
                             
-                            {!! Form::model($user, ['method'=>'PATCH', 'route' => ['usuarios.update', $user->id]])!!}
+                            {!! Form::model($user, ['method' => 'PATCH', 'route' => ['usuarios.update', $user->id]]) !!}
                             <div class="row">
-                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="col-xs-12 col-sm-6 col-md-6">
                                     <div class="form-group">
                                         <label for="name">Nombre</label>
-                                        {!! Form::text('name', null, array('class'=>'form-control'))!!}
+                                        {!! Form::text('name', $user->name, ['class' => 'form-control']) !!}
                                     </div>
                                 </div>
-                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                
+                                <div class="col-xs-12 col-sm-6 col-md-6">
                                     <div class="form-group">
-                                        <label for="email">E-mail</label>
-                                        {!! Form::text('email', null, array('class'=>'form-control'))!!}
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <div class="form-group">
-                                        <label for="password">Password</label>
-                                        {!! Form::password('password', array('class'=>'form-control'))!!}
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <div class="form-group">
-                                        <label for="confirm-password">Confirmar Password</label>
-                                        {!! Form::password('confirm-password', array('class'=>'form-control'))!!}
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <div class="form-group">
-                                        <label for="">Roles</label>
-                                        {!! Form::select('roles[]', $roles,$userRole, array('class'=>'form-control'))!!}
+                                        <label for="ape_pat">Apellido Paterno</label>
+                                        {!! Form::text('ape_pat', $user->ape_pat, ['class' => 'form-control']) !!}
                                     </div>
                                 </div>
 
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <label for="ape_mat">Apellido Materno</label>
+                                        {!! Form::text('ape_mat', $user->ape_mat, ['class' => 'form-control']) !!}
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <label for="email">E-mail</label>
+                                        {!! Form::text('email', $user->email, ['class' => 'form-control']) !!}
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <label for="fec_nacimiento">Fecha de Nacimiento</label>
+                                        {!! Form::date('fec_nacimiento', $user->fec_nacimiento, ['class' => 'form-control']) !!}
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <label for="direccion">Dirección</label>
+                                        {!! Form::text('direccion', $user->direccion, ['class' => 'form-control']) !!}
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <label for="password">Password</label>
+                                        {!! Form::password('password', ['class' => 'form-control']) !!}
+                                    </div>
+                                </div>
+                                
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <label for="confirm-password">Confirmar Password</label>
+                                        {!! Form::password('confirm-password', ['class' => 'form-control']) !!}
+                                    </div>
+                                </div>
+                                
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <label for="roles">Roles</label>
+                                        {!! Form::select('roles[]', $roles, $userRole, ['class' => 'form-control']) !!}
+                                    </div>
+                                </div>
+                                
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <button type="submit" class="btn btn-primary">Guardar</button>
                                 </div>
-                                {!!Form::close()!!}
                             </div>
-
+                            {!! Form::close() !!}
+                            
                         </div>
                     </div>
                 </div>
@@ -69,4 +101,3 @@
         </div>
     </section>
 @endsection
-
