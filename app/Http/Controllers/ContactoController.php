@@ -19,6 +19,7 @@ class ContactoController extends Controller
         $this->notificationService = $notificationService;
         $this->msg = Config::get('strings.messages');
     }
+    
     public function index(Request $request)
     {
         $query = User::where('estado', 1)
