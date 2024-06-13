@@ -49,7 +49,7 @@ Route::group(['middleware' => ['auth']], function(){
 Route::get('usuarios.createEspecialista', [UsuarioController::class, 'createEspecialista'])->name('usuarios.createEspecialista');
 
 Route::get('/index-discapacitado', [DiscapacitadoController::class,'index'])->name('discapacitado.index');
-Route::get('/index-especialista', [ContactoController::class,'index'])->name('especialista.index');
+Route::get('/index-especialista', [EspecialistaController::class,'index'])->name('especialista.index');
 
 Route::get('/contactos/{id}', [ContactoController::class,'show'])->name('contactos.show');
 Route::get('/contactos/solicitud/{id}', [ContactoController::class, 'solicitud'])->name('contactos.solicitud');

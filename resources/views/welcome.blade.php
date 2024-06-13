@@ -43,11 +43,9 @@
                     <a href="#about-us">
                         <div class="read-more">Leer Más ↓</div>
                     </a>
-
                 </div>
                 <div class="arrow-down"></div>
             </div>
-
         </section>
 
         <!-- section menu mobile -->
@@ -97,6 +95,8 @@
                         <li><a href="{{ url('/home') }}">HOME</a></li>
                     @else
                         <li><a href="{{ route('login') }}">LOGIN</a></li>
+                        <li><a href="{{ route('discapacitado.index') }}">DISCAPACITADO</a>/li>
+                        <li><a href="{{ route('especialista.index') }}">ESPECIALISTA</a></li>
                     @endauth
                 </ul>
             </div>
