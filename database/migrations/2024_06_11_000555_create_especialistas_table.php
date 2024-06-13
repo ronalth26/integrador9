@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('licencia')->nullable();
             $table->tinyInteger('estado')->default(1); // Valor predeterminado de 1
-            $table->foreignId('tipo_id')->nullable()->constrained('tipo_especialidad');
+            $table->foreignId('tipo_id')->nullable()->constrained('tipo_especialista');
             $table->foreignId('id_user')->nullable()->constrained('users'); // Supongo que es la tabla 'users'
             $table->timestamps();
         });
@@ -34,3 +34,4 @@ return new class extends Migration
         Schema::dropIfExists('especialistas');
     }
 };
+

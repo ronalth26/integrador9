@@ -13,16 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('especialistas', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->string('licencia')->nullable();
-            $table->tinyInteger('estado')->default(1); // Valor predeterminado de 1
-            $table->foreignId('tipo_id')->nullable()->constrained('tipo_especialista');
-            $table->foreignId('id_user')->nullable()->constrained('users'); // Supongo que es la tabla 'users'
+
+            $table->string('name');
+            $table->string('slug');
+            
             $table->timestamps();
         });
     }
-    
 
     /**
      * Reverse the migrations.
@@ -31,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('especialistas');
+        Schema::dropIfExists('categories');
     }
 };

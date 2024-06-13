@@ -31,4 +31,6 @@
     <a class="nav-link" href="/publicar">
         <i class="fas fa-edit"></i><span>Publicar</span>
     </a>
+    
+
 </li>
