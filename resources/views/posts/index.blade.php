@@ -37,8 +37,8 @@
                                         <td>{{ $post->name }}</td>
                                         <td>{{ $post->slug }}</td>
                                         <td>{{ $post->extract }}</td>
-                                        <td>{{ $post->user->name }}</td>
-                                        <td>{{ $post->category->name }}</td>
+                                        <td>{{ $post->user ? $post->user->name : 'N/A' }}</td>
+                                        <td>{{ $post->category ? $post->category->name : 'N/A' }}</td>
                                         <td>
                                             <a href="{{ route('posts.show', $post->id) }}" class="btn btn-sm btn-info">Ver</a>
                                             <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-sm btn-warning">Editar</a>
