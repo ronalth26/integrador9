@@ -57,39 +57,58 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        try {
+            DB::beginTransaction();
+
+            $user = User::create([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'ape_pat' => $data['ape_pat'] ?? null,
+                'ape_mat' => $data['ape_mat'] ?? null,
+                'fec_nacimiento' => $data['fec_nacimiento'] ?? null,
+                'direccion' => $data['direccion'] ?? null,
+                'password' => Hash::make($data['password']),
+            ]);
+
+            if (!$user) {
+                throw new \Exception('Error al crear el usuario.');
+            }
+
+            // Asignación de roles
+            $this->assignRoleByType($user, $data);
+
+            DB::commit();
+
+            return $user;
+        } catch (\Exception $e) {
+            DB::rollBack();
+            throw new \Exception($e->getMessage());
+        }
+    }
+
+    private function assignRoleByType(User $user, array $data)
+    {
         $tipo = isset($data['tipo']) ? $data['tipo'] : 2;
 
-        $userNew = User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'ape_pat' => $data['ape_pat'],
-            'ape_mat' => $data['ape_mat'],
-            'fec_nacimiento' => $data['fec_nacimiento'],
-            'direccion' => $data['direccion'],
-            'password' => Hash::make($data['password']),
-        ]);
-
-        DB::table('model_has_roles')->where('model_id', $userNew->id)->delete();
+        DB::table('model_has_roles')->where('model_id', $user->id)->delete();
 
         if ($tipo == 3) {
             Discapacitado::create([
                 'id' => $data['conadis_number'],
-                'id_user' => $userNew->id,
+                'id_user' => $user->id,
                 'id_tipo' => $data['id_tipo'],
                 'grado' => $data['grado'],
             ]);
 
-            $userNew->assignRole('Discapacitado');
+            $user->assignRole('Discapacitado');
         } elseif ($tipo == 2) {
-
             Especialista::create([
-                'id_user' => $userNew->id,
+                'id_user' => $user->id,
                 'tipo_id' => $data['tipo_id'],
                 'licencia' => $data['licencia'],
             ]);
-            $userNew->assignRole('Especialista');
-        }
 
-        return $userNew;
+            $user->assignRole('Especialista');
+        }
     }
 }
