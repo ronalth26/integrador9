@@ -56,6 +56,8 @@ Route::get('/index-especialista', [EspecialistaController::class,'index'])->name
 
 Route::get('/contactos/{id}', [ContactoController::class,'show'])->name('contactos.show');
 Route::get('/contactos/solicitud/{id}', [ContactoController::class, 'solicitud'])->name('contactos.solicitud');
+Route::get('/contactos/showListaContactos/{id}', [ContactoController::class, 'showListaContactos'])->name('contactos.showListaContactos');
+
 Route::get('/contactos/estado/{id}/{opcion}', [ContactoController::class,'estado'])->name('contactos.estado');
 
 Route::get('/register-especialista', function () {

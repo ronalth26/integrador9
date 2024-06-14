@@ -103,7 +103,7 @@ class UsuarioController extends Controller
 
         $this->notificationService->success($this->msg['msg1']);
 
-        return redirect()->route('usuarios.index');
+        return redirect()->route('home');
     }
 
     public function destroy($id)

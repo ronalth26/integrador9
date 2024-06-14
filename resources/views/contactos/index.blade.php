@@ -25,10 +25,15 @@
             <i class="fas fa-users mr-2" style="font-size: 1.25em;"></i> <!-- Icono de usuarios -->
             Contactar con usuarios
         </h3>
-        <!-- Botón para abrir el modal -->
-        <a class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#showModal5" data-url="{{ route('contactos.solicitud', ['id' => 1 ]) }}">
-            Solicitudes
+
+        <a class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#showModal5" data-url="{{ route('contactos.showListaContactos', ['id' => 1 ]) }}">
+            <i class="fas fa-address-book mr-1"></i> Ver mis contactos
         </a>
+
+        <a class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#showModal5" data-url="{{ route('contactos.solicitud', ['id' => 1 ]) }}">
+            <i class="fas fa-user-friends mr-1"></i> Solicitudes
+        </a>
+
 
     </div>
 </section>
@@ -114,7 +119,6 @@
 </div>
 
 <!-- Modals -->
-
 
 @include('contactos.modal.details')
 

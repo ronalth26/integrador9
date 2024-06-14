@@ -1,11 +1,11 @@
 @extends('layouts.auth_app')
 @section('title')
-Register Discapacitado
+Registrar Discapacitado
 @endsection
 @section('content')
 <div class="card card-primary">
     <div class="card-header">
-        <h4>Register Discapacitado</h4>
+        <h4>Registrar Discapacitado</h4>
     </div>
 
     <div class="card-body pt-1">
@@ -17,7 +17,7 @@ Register Discapacitado
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="name">Nombre Completo:</label><span class="text-danger">*</span>
-                        <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" tabindex="1" placeholder="Enter Full Name" value="{{ old('name') }}" autofocus required>
+                        <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" tabindex="1" placeholder="Ingrese Nombre Completo" value="{{ old('name') }}" autofocus required>
                         <div class="invalid-feedback">
                             {{ $errors->first('name') }}
                         </div>
@@ -28,7 +28,7 @@ Register Discapacitado
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="ape_pat">Apellido Paterno:</label><span class="text-danger">*</span>
-                        <input id="ape_pat" type="text" class="form-control{{ $errors->has('ape_pat') ? ' is-invalid' : '' }}" name="ape_pat" tabindex="1" placeholder="Enter Last Name" value="{{ old('ape_pat') }}" required>
+                        <input id="ape_pat" type="text" class="form-control{{ $errors->has('ape_pat') ? ' is-invalid' : '' }}" name="ape_pat" tabindex="1" placeholder="Ingrese Apellido Paterno" value="{{ old('ape_pat') }}" required>
                         <div class="invalid-feedback">
                             {{ $errors->first('ape_pat') }}
                         </div>
@@ -39,7 +39,7 @@ Register Discapacitado
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="ape_mat">Apellido Materno:</label><span class="text-danger">*</span>
-                        <input id="ape_mat" type="text" class="form-control{{ $errors->has('ape_mat') ? ' is-invalid' : '' }}" name="ape_mat" tabindex="1" placeholder="Enter Mother's Last Name" value="{{ old('ape_mat') }}" required>
+                        <input id="ape_mat" type="text" class="form-control{{ $errors->has('ape_mat') ? ' is-invalid' : '' }}" name="ape_mat" tabindex="1" placeholder="Ingrese Apellido Materno" value="{{ old('ape_mat') }}" required>
                         <div class="invalid-feedback">
                             {{ $errors->first('ape_mat') }}
                         </div>
@@ -61,7 +61,7 @@ Register Discapacitado
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="direccion">Dirección:</label><span class="text-danger">*</span>
-                        <input id="direccion" type="text" class="form-control{{ $errors->has('direccion') ? ' is-invalid' : '' }}" name="direccion" placeholder="Enter Address" value="{{ old('direccion') }}" required>
+                        <input id="direccion" type="text" class="form-control{{ $errors->has('direccion') ? ' is-invalid' : '' }}" name="direccion" placeholder="Ingrese Dirección" value="{{ old('direccion') }}" required>
                         <div class="invalid-feedback">
                             {{ $errors->first('direccion') }}
                         </div>
@@ -72,7 +72,7 @@ Register Discapacitado
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="email">Email:</label><span class="text-danger">*</span>
-                        <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="Enter Email address" name="email" tabindex="1" value="{{ old('email') }}" required autofocus>
+                        <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="Ingrese Email" name="email" tabindex="1" value="{{ old('email') }}" required autofocus>
                         <div class="invalid-feedback">
                             {{ $errors->first('email') }}
                         </div>
@@ -83,7 +83,7 @@ Register Discapacitado
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="password" class="control-label">Contraseña:</label><span class="text-danger">*</span>
-                        <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="Set account password" name="password" tabindex="2" required>
+                        <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="Ingrese Contraseña" name="password" tabindex="2" required>
                         <div class="invalid-feedback">
                             {{ $errors->first('password') }}
                         </div>
@@ -94,7 +94,7 @@ Register Discapacitado
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="password_confirmation" class="control-label">Confirma Contraseña:</label><span class="text-danger">*</span>
-                        <input id="password_confirmation" type="password" placeholder="Confirm account password" class="form-control{{ $errors->has('password_confirmation') ? ' is-invalid' : '' }}" name="password_confirmation" tabindex="2">
+                        <input id="password_confirmation" type="password" placeholder="Confirme Contraseña" class="form-control{{ $errors->has('password_confirmation') ? ' is-invalid' : '' }}" name="password_confirmation" tabindex="2">
                         <div class="invalid-feedback">
                             {{ $errors->first('password_confirmation') }}
                         </div>
@@ -105,7 +105,7 @@ Register Discapacitado
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="conadis_number">Número CONADIS:</label><span class="text-danger">*</span>
-                        <input id="conadis_number" type="text" class="form-control{{ $errors->has('conadis_number') ? ' is-invalid' : '' }}" name="conadis_number" placeholder="Enter CONADIS Number" value="{{ old('conadis_number') }}" required>
+                        <input id="conadis_number" type="text" class="form-control{{ $errors->has('conadis_number') ? ' is-invalid' : '' }}" name="conadis_number" placeholder="Ingrese Número CONADIS" value="{{ old('conadis_number') }}" required>
                         <div class="invalid-feedback">
                             {{ $errors->first('conadis_number') }}
                         </div>
@@ -124,7 +124,7 @@ Register Discapacitado
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="grado">Grado de Discapacidad:</label><span class="text-danger">*</span>
-                        <input id="grado" type="text" class="form-control{{ $errors->has('grado') ? ' is-invalid' : '' }}" name="grado" placeholder="Enter grado Discapacidad" value="{{ old('grado') }}" required>
+                        <input id="grado" type="text" class="form-control{{ $errors->has('grado') ? ' is-invalid' : '' }}" name="grado" placeholder="Ingrese Grado de Discapacidad" value="{{ old('grado') }}" required>
                         <div class="invalid-feedback">
                             {{ $errors->first('grado') }}
                         </div>
@@ -134,7 +134,7 @@ Register Discapacitado
                 <div class="col-md-12 mt-4">
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                            Register
+                            Registrar
                         </button>
                     </div>
                 </div>
@@ -143,6 +143,6 @@ Register Discapacitado
     </div>
 </div>
 <div class="mt-5 text-muted text-center">
-    Already have an account? <a href="{{ route('login') }}">SignIn</a>
+    ¿Ya tienes una cuenta? <a href="{{ route('login') }}">Iniciar Sesión</a>
 </div>
 @endsection
