@@ -91,13 +91,15 @@
                     <li><a href="#about-us">NOSOTROS</a></li>
                     <li><a href="#portfolio">PORTAFOLIO</a></li>
                     <li><a href="#contact">CONTACTO</a></li>
+                    @if (Route::has('login'))
                     @auth
-                        <li><a href="{{ url('/home') }}">HOME</a></li>
+                    <li><a href="{{ url('/home') }}">HOME</a></li>
                     @else
-                        <li><a href="{{ route('login') }}">LOGIN</a></li>
-                        <li><a href="{{ route('discapacitado.index') }}">DISCAPACITADO</a>/li>
-                        <li><a href="{{ route('especialista.index') }}">ESPECIALISTA</a></li>
+                    <li><a href="{{ route('login') }}">LOGIN</a></li>
+                    <li><a href="{{ route('discapacitado.index') }}">DISCAPACITADO</a>/li>
+                    <li><a href="{{ route('especialista.index') }}">ESPECIALISTA</a></li>
                     @endauth
+                    @endif
                 </ul>
             </div>
 

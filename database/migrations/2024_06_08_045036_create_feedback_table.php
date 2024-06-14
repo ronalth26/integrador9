@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('descripcion', 500);
             $table->dateTime('fecha')->nullable();
             $table->time('hora')->nullable();
-            $table->tinyInteger('estado')->default('1');
             $table->foreignId('id_user')->nullable()->constrained('users');
             $table->foreignId('id_admin')->nullable()->constrained('users');
             $table->foreignId('tipo')->nullable()->constrained('tipo_feedback');
