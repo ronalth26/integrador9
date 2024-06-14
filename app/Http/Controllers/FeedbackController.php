@@ -11,6 +11,8 @@ use App\Services\NotificationService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
+
 
 class FeedbackController extends Controller
 {
@@ -46,37 +48,34 @@ class FeedbackController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate(
-            $request,
-            [
-                'descripcion' => 'required',
-                'tipo' => 'required',
-            ]
-        );
+        $this->validate($request, [
+            'descripcion' => 'required',
+            'tipo' => 'required',
+        ]);
 
         $input = $request->all();
         $input['id_user'] = Auth::id();
         $input['fecha'] = \Carbon\Carbon::now()->format('Y-m-d');
         $input['hora'] = \Carbon\Carbon::now()->format('H:i:s');
+        $input['estado_feedback'] = 1; // Añade el campo 'estado_feedback'
+
         Feedback::create($input);
 
         $this->notificationService->success($this->msg['feedbackMsgSuccess']);
 
-        // $input = $request->all();
-        // $input['password'] = Hash::make($input['password']);
+        // Marcar el formulario como enviado correctamente usando sesión flash
+        Session::flash('feedbackStored', true);
 
-        // $user = User::create($input);
-        // $user->assignRole('Discapacitado');
-
-        $opcionesTransformadas = $this->opcionesTransformadas();
-
-        return view('feedbacks.index', compact('opcionesTransformadas'));
+        // Redirigir a la página de index de feedbacks
+        return redirect()->route('feedbacks.index');
     }
 
     public function showHistorial($id)
     {
-        $exam = "slinky"; // Puedes definir tu variable aquí
-        $feedbacks = Feedback::where('id_user', Auth::id())->get();
+        $feedbacks = Feedback::with('estadoFeedback')
+                            ->where('id_user', Auth::id())
+                            ->get();
+
         $view = view('feedbacks.modal.showHistorial', compact('feedbacks'));
 
         if (request()->ajax()) {
@@ -85,4 +84,7 @@ class FeedbackController extends Controller
             return $view;
         }
     }
+    
+
+
 }

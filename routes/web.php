@@ -10,6 +10,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ContactoController;
 use App\Http\Controllers\EspecialistaController;
 use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\EstadosController;
 use App\Models\Feedback;
 use App\Http\Controllers\PostController;
 use App\Models\Post;
@@ -44,7 +45,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::resource('feedbacks', FeedbackController::class);
     Route::resource('contactos', ContactoController::class);
     Route::resource('posts', PostController::class);
-    
+    Route::resource('estados', EstadosController::class);
 });
 
 
