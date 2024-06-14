@@ -15,7 +15,7 @@ class Contacto extends Model
         'id_emisor',
         'fecha_envio',
         'fecha_revision',
-        'estado',
+        'estado_id',
     ];
 
     public function emisor()

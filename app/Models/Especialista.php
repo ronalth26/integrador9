@@ -10,8 +10,8 @@ class Especialista extends Model
 
     protected $fillable = [
         'licencia',
-        'id_user',
         'tipo_id',
+        'id_user',
     ];
 
     public function user()

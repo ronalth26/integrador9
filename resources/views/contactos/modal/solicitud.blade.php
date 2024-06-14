@@ -48,11 +48,11 @@
             </div>
             <p class="mb-1">{{ $solicitud->mensaje }}</p>
             <div class="d-flex justify-content-end">
-                <a href="{{ route('contactos.estado', ['id' => $solicitud->emisor->id, 'opcion' => 1]) }}" class="btn btn-success btn-sm mr-2">
+                <a href="{{ route('contactos.estado', ['id' => $solicitud->emisor->id, 'opcion' => 2]) }}" class="btn btn-success btn-sm mr-2">
                     <i class="fas fa-check"></i> Aceptar
                 </a>
 
-                <a href="{{ route('contactos.estado', ['id' => $solicitud->emisor->id, 'opcion' => 2]) }}" class="btn btn-danger btn-sm">
+                <a href="{{ route('contactos.estado', ['id' => $solicitud->emisor->id, 'opcion' => 3]) }}" class="btn btn-danger btn-sm">
                     <i class="fas fa-times"></i> Rechazar
                 </a>
 
