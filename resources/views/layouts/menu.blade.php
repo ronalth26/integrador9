@@ -35,8 +35,9 @@
     </a>
     @endcan
     @can('usuarios')
-    <a class="nav-link" href="/publicar">
-        <i class="fas fa-edit"></i><span>Publicar</span>
+    <a class="nav-link" href="/posts">
+        <i class="fas fa-edit"></i><span>Posts</span>
     </a>
     @endcan
+
 </li>

@@ -9,24 +9,36 @@ class Post extends Model
 {
     use HasFactory;
 
-    //Relacion uno a muchos inversa
+    protected $fillable = [
+        'name',
+        'slug',
+        'extract',
+        'body',
+        'status',
+        'id_user',
+        'id_category',
+    ];
 
-    public function user(){
-        return $this->belongsTo(User::class);
+    // Relación uno a muchos inversa
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_user');
     }
-    public function category(){
-        return $this->belongsTo(Category::class);
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'id_category');
     }
 
-    //Relacion muchos a muchos
-
-    public function tags(){
+    // Relación muchos a muchos
+    public function tags()
+    {
         return $this->belongsToMany(Tag::class);
     }
 
-    //Relacion uno a uno polimorfica
-
-    public function image(){
-        return $this->morphOne(Image::class, 'imageable');
+    // Relación uno a uno polimórfica
+    public function images()
+    {
+        return $this->morphMany(Image::class, 'imageable');
     }
 }

@@ -58,7 +58,7 @@
                 },
                 error: function() {
                     $("#loading-container-5").hide();
-                    $("#document-container-5").html('<p>Error al cargar los datoss.</p>').show();
+                    $("#document-container-5").html('<p>Error al cargar los datos.</p>').show();
                 }
             });
         });

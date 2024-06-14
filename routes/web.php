@@ -12,6 +12,7 @@ use App\Http\Controllers\EspecialistaController;
 use App\Http\Controllers\FeedbackController;
 use App\Models\Feedback;
 use App\Http\Controllers\PostController;
+use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
@@ -42,9 +43,11 @@ Route::group(['middleware' => ['auth']], function(){
     Route::resource('blogs', BLogController::class);
     Route::resource('feedbacks', FeedbackController::class);
     Route::resource('contactos', ContactoController::class);
+    Route::resource('posts', PostController::class);
+    
 });
 
-//Route::get('/', [PostController::class, 'index'])->name('posts.index');
+
 
 Route::get('usuarios.createEspecialista', [UsuarioController::class, 'createEspecialista'])->name('usuarios.createEspecialista');
 
