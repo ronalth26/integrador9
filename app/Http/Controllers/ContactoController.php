@@ -172,10 +172,10 @@ class ContactoController extends Controller
         // Obtener los contactos donde el usuario autenticado está como emisor o receptor y el estado es 2 (aceptado)
         $contactos = Contacto::where(function ($query) {
             $query->where('id_emisor', auth()->user()->id)
-                ->where('estado_id', 2);
+                  ->where('estado_id', 2);
         })->orWhere(function ($query) {
             $query->where('id_receptor', auth()->user()->id)
-                ->where('estado_id', 2);
+                  ->where('estado_id', 2);
         })->get();
 
         // Renderizar la vista de lista de contactos

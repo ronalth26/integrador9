@@ -12,15 +12,12 @@
     Historial Feedbacks
 </button>
 
-<!-- <button type="button" class="btn btn-link">
-    <a href="{{ route('feedbacks.indexP') }}" style="text-decoration: none; color: inherit;">Prueba</a>
-</button> -->
 
 {!! Form::open(['route' => 'feedbacks.store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
 <div class="card">
     <div class="card-body">
         <table class="table table-striped mt-2">
-            <thead style="background-color: #6777ef;">
+            <thead class="bg-primary">
                 <tr>
                     <th style="color:#fff;">
                         <h4>Enviemos una recomendación!!</h4>

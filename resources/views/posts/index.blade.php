@@ -19,7 +19,7 @@
                             <h4 class="text-center">No hay posts disponibles</h4>
                         @else
                             <table class="table table-striped">
-                                <thead>
+                                <thead class="bg-primary">
                                     <tr>
                                         <th>ID</th>
                                         <th>Nombre</th>
