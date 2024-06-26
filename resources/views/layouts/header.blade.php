@@ -39,41 +39,28 @@
         </button>
 
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="accesibilidadDropdown">
-            <li class="dropdown-header">ACCESIBILIDAD</li>
-
-            <li>
-                <a class="dropdown-item d-flex justify-content-between align-items-center" href="{{ route('usuarios.personalizar', 0) }}" onclick="toggleDaltonico()">
-                    Normal
-                    @if (auth()->user()->p1 == 0 && auth()->user()->p2 == 0 && auth()->user()->p3 == 0)
-                    <i id="icon-daltonico" class="bi bi-eye-fill"></i>
-                    @endif
-                </a>
-            </li>
-            <li>
-                <a class="dropdown-item d-flex justify-content-between align-items-center" href="{{ route('usuarios.personalizar', 1) }}" onclick="toggleDaltonico()">
-                    Protanopia
-                    @if (auth()->user()->p1 == 1)
-                    <i id="icon-daltonico" class="bi bi-eye-fill"></i>
-                    @endif
-                </a>
-            </li>
-            <li>
-                <a class="dropdown-item d-flex justify-content-between align-items-center" href="{{ route('usuarios.personalizar', 2) }}" onclick="mejorarNitidez()">
-                    Deuteranopia
-                    @if (auth()->user()->p2 == 1)
-                    <i id="icon-nitidez" class="bi bi-eye-fill"></i>
-                    @endif
-                </a>
-            </li>
-            <li>
-                <a class="dropdown-item d-flex justify-content-between align-items-center" href="{{ route('usuarios.personalizar', 3) }}" onclick="mejorarEnfoque()">
-                    Tritanopia
-                    @if (auth()->user()->p3 == 1)
-                    <i id="icon-enfoque" class="bi bi-eye-fill"></i>
-                    @endif
-                </a>
-            </li>
-        </ul>
+    <li class="dropdown-header">ACCESIBILIDAD</li>
+    <li>
+        <a class="dropdown-item d-flex justify-content-between align-items-center" href="#" onclick="personalizarUsuario(1)">
+            Protanopia
+        </a>
+    </li>
+    <li>
+        <a class="dropdown-item d-flex justify-content-between align-items-center" href="#" onclick="personalizarUsuario(2)">
+            Deuteranopia
+        </a>
+    </li>
+    <li>
+        <a class="dropdown-item d-flex justify-content-between align-items-center" href="#" onclick="personalizarUsuario(3)">
+            Tritanopia
+        </a>
+    </li>
+    <li>
+        <a class="dropdown-item d-flex justify-content-between align-items-center" href="#" onclick="personalizarUsuario(0)">
+            Modo Normal
+        </a>
+    </li>
+</ul>
 
 
     </div>
@@ -212,3 +199,17 @@
 <!-- SimpleBar CSS -->
 
 {{-- Prueba --}}
+
+<script>
+    function personalizarUsuario(id) {
+        fetch("{{ route('usuarios.personalizar', ':id') }}".replace(':id', id))
+            .then(response => {
+                if (response.ok) {
+                    location.reload(); // Recargar la página después de éxito
+                } else {
+                    console.error('Error al procesar la solicitud');
+                }
+            })
+            .catch(error => console.error(error));
+    }
+</script>

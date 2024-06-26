@@ -73,8 +73,7 @@ class UsuarioController extends Controller
     public function personalizar($id)
     {
         $user = User::where('id', auth()->user()->id)->first();
-
-
+    
         // Definir los valores según el $id recibido
         switch ($id) {
             case 1:
@@ -99,15 +98,16 @@ class UsuarioController extends Controller
                 break;
             default:
                 // Cualquier otro valor de $id no hace cambios
-                return redirect()->route('usuarios.index');
+                return response()->json(['success' => false, 'message' => 'Opción inválida']);
         }
-
+    
         // Guardar los cambios en la base de datos
         $user->save();
-
-        return redirect()->route('usuarios.index');
+    
+        // Respuesta JSON indicando que la operación fue exitosa
+        return response()->json(['success' => true]);
     }
-
+    
     public function show($id)
     {
         // Implementa la lógica para mostrar un usuario específico
