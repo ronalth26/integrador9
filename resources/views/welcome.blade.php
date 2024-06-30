@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Onepage - clean responsive HTML5 themes - thomsoon.com</title>
+    <title>CIR</title>
 
     <meta name="description" content="Free download theme onepage, clean and modern responsive for all" />
     <meta name="keywords" content="responsive, html5, onepage, themes, template, clean layout, free web" />
@@ -96,7 +96,7 @@
                     <li><a href="{{ url('/home') }}">HOME</a></li>
                     @else
                     <li><a href="{{ route('login') }}">LOGIN</a></li>
-                    <li><a href="{{ route('discapacitado.index') }}">DISCAPACITADO</a>/li>
+                    <li><a href="{{ route('discapacitado.index') }}">DISCAPACITADO</a></li>
                     <li><a href="{{ route('especialista.index') }}">ESPECIALISTA</a></li>
                     @endauth
                     @endif

@@ -3,18 +3,18 @@
 @section('content')
 <section class="section">
     <div class="section-header">
-        <h3 class="page__heading">Foro</h3>
+        <h3 class="page__heading" style="margin-right:40px;">Foro</h3>
+         <a class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#showModal5" data-url="{{ route('posts.create')}}">
+                        Crear Post
+                    </a>
     </div>
     <div class="section-body">
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
-                    <div class="card-body">
-                        <h3 class="text-center">Dashboard Content</h3>
-                    </div>
-                    <a class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#showModal5" data-url="{{ route('posts.create')}}">
-                        Crear Post
-                    </a>
+                    
+                   
+
                     @if($posts->isEmpty())
                             <h4 class="text-center">No hay posts disponibles</h4>
                         @else
