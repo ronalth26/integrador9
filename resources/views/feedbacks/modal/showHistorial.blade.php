@@ -58,6 +58,7 @@
                     </div>
                 </div>
             </div>
+<<<<<<< HEAD
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -96,3 +97,37 @@
     });
 </script>
 
+=======
+            <div class="modal-body">
+                <table class="table table-striped">
+                    <thead class="bg-primary">
+                        <tr>
+                            <th>ID</th>
+                            <th>Descripción</th>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Estado</th>
+                            <th>Tipo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($feedbacks as $feedback)
+                            <tr>
+                                <td>{{ $feedback->id }}</td>
+                                <td>{{ $feedback->descripcion }}</td>
+                                <td>{{ $feedback->fecha }}</td>
+                                <td>{{ $feedback->hora }}</td>
+                                <td>{{ $feedback->estado }}</td>
+                                <td>{{ $feedback->tipo }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+>>>>>>> 91d00a000751bb1f5dd4799d27dc9b52c822cf4f

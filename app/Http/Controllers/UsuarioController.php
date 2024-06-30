@@ -28,7 +28,7 @@ class UsuarioController extends Controller
     }
 
     public function create()
-    {   
+    {
         $roles = Role::pluck('name', 'name')->all();
         return view('usuarios.crear', compact('roles'));
     }
@@ -57,6 +57,57 @@ class UsuarioController extends Controller
         return redirect()->route('usuarios.index');
     }
 
+    // public function personalizar($id)
+    // {
+
+    //     $user = User::where('id', auth()->user()->id)->first();
+
+    //     $field = 'p' . $id;
+    //     if (in_array($field, ['p1', 'p2', 'p3'])) {
+    //         $user->$field = $user->$field == 1 ? 0 : 1;
+    //         $user->update([$field => $user->$field]);
+    //     }
+    //     return redirect()->route('usuarios.index');
+    // }
+
+    public function personalizar($id)
+    {
+        $user = User::where('id', auth()->user()->id)->first();
+    
+        // Definir los valores según el $id recibido
+        switch ($id) {
+            case 1:
+                $user->p1 = 1;
+                $user->p2 = 0;
+                $user->p3 = 0;
+                break;
+            case 2:
+                $user->p1 = 0;
+                $user->p2 = 1;
+                $user->p3 = 0;
+                break;
+            case 3:
+                $user->p1 = 0;
+                $user->p2 = 0;
+                $user->p3 = 1;
+                break;
+            case 0:
+                $user->p1 = 0;
+                $user->p2 = 0;
+                $user->p3 = 0;
+                break;
+            default:
+                // Cualquier otro valor de $id no hace cambios
+                return response()->json(['success' => false, 'message' => 'Opción inválida']);
+        }
+    
+        // Guardar los cambios en la base de datos
+        $user->save();
+    
+        // Respuesta JSON indicando que la operación fue exitosa
+        return response()->json(['success' => true]);
+    }
+    
     public function show($id)
     {
         // Implementa la lógica para mostrar un usuario específico
