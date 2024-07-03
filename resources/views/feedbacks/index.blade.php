@@ -12,6 +12,15 @@
     Historial Feedbacks
 </button>
 
+@if(Session::has('feedbackStored'))
+    <div class="alert alert-success" role="alert">
+        Datos guardado correctamente.
+    </div>
+    <!-- Eliminar la sesión flash para evitar que el mensaje se muestre en futuras actualizaciones -->
+    {{ Session::forget('feedbackStored') }}
+@endif
+
+
 <!-- <button type="button" class="btn btn-link">
     <a href="{{ route('feedbacks.indexP') }}" style="text-decoration: none; color: inherit;">Prueba</a>
 </button> -->
@@ -20,7 +29,7 @@
 <div class="card">
     <div class="card-body">
         <table class="table table-striped mt-2">
-            <thead style="background-color: #6777ef;">
+            <thead class="bg-primary">
                 <tr>
                     <th style="color:#fff;">
                         <h4>Enviemos una recomendación!!</h4>
@@ -52,14 +61,17 @@
             </div>
         </div>
 
-        <!-- <div class="col-md-12">
+        <div class="col-md-12">
             <button type="submit" class="btn btn-primary">Guardar</button>
-        </div> -->
+        </div>
     </div>
 </div>
 {!! Form::close() !!}
 
 @include('feedbacks.modal.saveFeedback')    
+@include('feedbacks.modal.buscar')   
+
+
 
 @endsection
 
@@ -67,5 +79,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+
 
 @endsection

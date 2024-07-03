@@ -31,6 +31,9 @@ class User extends Authenticatable
         'direccion',
         'fec_nacimiento',
         'estado',
+        'p1',
+        'p2',
+        'p3',
     ];
 
     /**

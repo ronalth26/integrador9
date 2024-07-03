@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TipoFeedback extends Model
+class EstadoFeedback extends Model
 {
     use HasFactory;
-    protected $fillable = ['nombre','descripcion'];
+    protected $fillable = ['estado','descripcion'];
      // Definir la relación inversa con Feedback
      public function feedbacks()
      {
-         return $this->hasMany(Feedback::class, 'tipo');
+         return $this->hasMany(Feedback::class, 'estado_feedback');
      }
 }

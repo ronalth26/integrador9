@@ -10,6 +10,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ContactoController;
 use App\Http\Controllers\EspecialistaController;
 use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\EstadosController;
 use App\Models\Feedback;
 use App\Http\Controllers\PostController;
 use App\Models\Post;
@@ -44,12 +45,16 @@ Route::group(['middleware' => ['auth']], function(){
     Route::resource('feedbacks', FeedbackController::class);
     Route::resource('contactos', ContactoController::class);
     Route::resource('posts', PostController::class);
-    
+    Route::resource('estados', EstadosController::class);
 });
 
 
 
+
+
 Route::get('usuarios.createEspecialista', [UsuarioController::class, 'createEspecialista'])->name('usuarios.createEspecialista');
+
+Route::get('/personalizar/{id}', [UsuarioController::class, 'personalizar'])->name('usuarios.personalizar');
 
 Route::get('/index-discapacitado', [DiscapacitadoController::class,'index'])->name('discapacitado.index');
 Route::get('/index-especialista', [EspecialistaController::class,'index'])->name('especialista.index');

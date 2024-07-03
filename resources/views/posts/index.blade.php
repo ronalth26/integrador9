@@ -3,7 +3,10 @@
 @section('content')
 <section class="section">
     <div class="section-header">
-        <h3 class="page__heading">Foro</h3>
+        <h3 class="page__heading" style="margin-right:40px;">Foro</h3>
+         <a class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#showModal5" data-url="{{ route('posts.create')}}">
+                        Crear Post
+                    </a>
     </div>
     <div class="section-body">
         <div class="row">
@@ -45,7 +48,6 @@
                             </div>
                             @endforeach
                         @endif
-                    </div>
                 </div>
             </div>
         </div>

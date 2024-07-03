@@ -1,8 +1,10 @@
-<section class="section">
-    <div class="section-header">
-        <h3 class="page__heading">Dashboard</h3>
-    </div>
-    <div class="section-body">
+<head>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<section class="section" style="padding: 20px; background-color: #f4f6f9;">
+    
+    <div class="section-body" style="padding: 20px;">
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">

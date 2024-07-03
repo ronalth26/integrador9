@@ -12,6 +12,11 @@
         <i class=" fas fa-user-lock"></i><span>Roles</span>
     </a>
     @endcan
+    @can('admin')
+    <a class="nav-link" href="/estados">
+        <i class="fas fa-comment"></i><span>Feddback</span>
+    </a>
+    @endcan
 
     @can('usuarios')
     <a class="nav-link" href="/blogs">
