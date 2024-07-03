@@ -11,7 +11,7 @@
                     </div>
                     <div class="container mt-5">
                         <h2>Crear Nuevo Post</h2>
-                        <form action="{{ route('posts.store') }}" method="POST">
+                        <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <label for="name">Nombre</label>
@@ -54,6 +54,11 @@
                                     @endforeach
                                 </select>
                             </div>
+                             <div class="form-group">
+                                <label for="image">Imagen</label>
+                                <input type="file" class="form-control" id="image" name="image">
+                            </div>  
+                            
                             <button type="submit" class="btn btn-primary">Guardar</button>
                         </form>
                     </div>
