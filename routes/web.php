@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SeguimientoController;
 use Illuminate\Support\Facades\Route;
 //Controladores
 use App\Http\Controllers\HomeController;
@@ -46,6 +47,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::resource('contactos', ContactoController::class);
     Route::resource('posts', PostController::class);
     Route::resource('estados', EstadosController::class);
+    Route::resource('seguimientos', SeguimientoController::class);
 });
 
 
