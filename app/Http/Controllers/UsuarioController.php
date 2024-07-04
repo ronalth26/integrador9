@@ -73,7 +73,7 @@ class UsuarioController extends Controller
     public function personalizar($id)
     {
         $user = User::where('id', auth()->user()->id)->first();
-    
+
         // Definir los valores según el $id recibido
         switch ($id) {
             case 1:
@@ -100,14 +100,14 @@ class UsuarioController extends Controller
                 // Cualquier otro valor de $id no hace cambios
                 return response()->json(['success' => false, 'message' => 'Opción inválida']);
         }
-    
+
         // Guardar los cambios en la base de datos
         $user->save();
-    
+
         // Respuesta JSON indicando que la operación fue exitosa
         return response()->json(['success' => true]);
     }
-    
+
     public function show($id)
     {
         // Implementa la lógica para mostrar un usuario específico
@@ -137,7 +137,6 @@ class UsuarioController extends Controller
 
         $input = $request->all();
 
-
         if (!empty($input['password'])) {
             $input['password'] = Hash::make($input['password']);
         } else {
@@ -155,6 +154,20 @@ class UsuarioController extends Controller
         $this->notificationService->success($this->msg['msg1']);
 
         return redirect()->route('home');
+    }
+
+    
+    // Función para sanitizar la ruta almacenada
+    private function sanitizeStoredPath($storedPath)
+    {
+        // Obtener el nombre de archivo seguro
+        $filename = basename($storedPath);
+
+        // Construir la ruta segura completa
+        $safePath = 'storage/profile_images/' . $filename;
+
+        // Devolver la ruta segura
+        return $safePath;
     }
 
     public function destroy($id)

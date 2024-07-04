@@ -46,6 +46,15 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'ape_pat' => ['nullable', 'string', 'max:255'],
+            'ape_mat' => ['nullable', 'string', 'max:255'],
+            'fec_nacimiento' => ['nullable', 'date'],
+            'direccion' => ['nullable', 'string', 'max:255'],
+            'conadis_number' => ['nullable', 'string', 'max:255'],
+            'id_tipo' => ['nullable'],
+            'grado' => ['nullable', 'string', 'max:255'],
+            'tipo_id' => ['nullable'],
+            'licencia' => ['nullable', 'string', 'max:255'],
         ]);
     }
 
@@ -63,10 +72,10 @@ class RegisterController extends Controller
             $user = User::create([
                 'name' => $data['name'],
                 'email' => $data['email'],
-                'ape_pat' => $data['ape_pat'] ?? null,
-                'ape_mat' => $data['ape_mat'] ?? null,
-                'fec_nacimiento' => $data['fec_nacimiento'] ?? null,
-                'direccion' => $data['direccion'] ?? null,
+                'ape_pat' => $data['ape_pat'],
+                'ape_mat' => $data['ape_mat'],
+                'fec_nacimiento' => $data['fec_nacimiento'],
+                'direccion' => $data['direccion'],
                 'password' => Hash::make($data['password']),
             ]);
 
@@ -74,7 +83,7 @@ class RegisterController extends Controller
                 throw new \Exception('Error al crear el usuario.');
             }
 
-            // Asignación de roles
+            // Asignación de roles según tipo
             $this->assignRoleByType($user, $data);
 
             DB::commit();
@@ -86,9 +95,16 @@ class RegisterController extends Controller
         }
     }
 
+    /**
+     * Asigna roles según el tipo de usuario.
+     *
+     * @param  \App\Models\User  $user
+     * @param  array  $data
+     * @return void
+     */
     private function assignRoleByType(User $user, array $data)
     {
-        $tipo = isset($data['tipo']) ? $data['tipo'] : 2;
+        $tipo = isset($data['tipo']) ? $data['tipo'] : 2; // Ajusta según tus necesidades
 
         DB::table('model_has_roles')->where('model_id', $user->id)->delete();
 
