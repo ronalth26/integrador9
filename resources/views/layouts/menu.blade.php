@@ -61,7 +61,7 @@
     @can('usuarios')
     @if(auth()->user()->post)
     <a class="nav-link" href="/posts">
-        <i class="fas fa-edit"></i><span>Posts</span>
+        <i class="fas fa-edit"></i><span>Foro</span>
     </a>
     @endif
     @endcan

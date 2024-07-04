@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\SeguimientoController;
 use Illuminate\Support\Facades\Route;
 //Controladores
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SesionController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\DiscapacitadoController;
@@ -12,7 +14,7 @@ use App\Http\Controllers\EspecialistaController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\EstadosController;
 use App\Http\Controllers\PermisosController;
-use App\Models\Feedback;
+
 use App\Http\Controllers\RevisionController;
 use App\Http\Controllers\VerificacionController;
 use App\Http\Controllers\PostController;
@@ -50,6 +52,8 @@ Route::group(['middleware' => ['auth']], function(){
     Route::resource('contactos', ContactoController::class);
     Route::resource('posts', PostController::class);
     Route::resource('estados', EstadosController::class);
+    Route::resource('seguimientos', SeguimientoController::class);
+    Route::resource('sesiones', SesionController::class);
     Route::resource('permisos', PermisosController::class);
     Route::resource('revision', RevisionController::class);
     Route::resource('verificacion', VerificacionController::class);

@@ -17,6 +17,7 @@ class Post extends Model
         'status',
         'id_user',
         'id_category',
+        'image',
     ];
 
     // Relación uno a muchos inversa
@@ -37,8 +38,8 @@ class Post extends Model
     }
 
     // Relación uno a uno polimórfica
-    public function images()
-    {
-        return $this->morphMany(Image::class, 'imageable');
-    }
+    //public function images()
+    //{
+    //    return $this->morphMany(Image::class, 'imageable');
+    //}
 }
