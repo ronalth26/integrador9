@@ -59,7 +59,7 @@
                             <label for="body">
                                 <i class="fas fa-align-justify mr-2"></i> Cuerpo
                             </label>
-                            <textarea class="form-control" id="body" name="body" rows="6" placeholder="Ingrese el cuerpo del post" required></textarea>
+                            <textarea style="height: 150px;" class="form-control" id="body" name="body" rows="6" placeholder="Ingrese el cuerpo del post" required></textarea>
                         </div>
                         <div class="form-group">
                             <label for="id_category">

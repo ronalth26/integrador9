@@ -22,7 +22,7 @@
                         <h4 class="text-center">No hay publicaciones disponibles</h4>
                         @else
                         @foreach($posts as $post)
-                        <div class="post-card mb-3 p-3 border rounded">
+                        <div class="post-card mb-3 p-3 border rounded" style="margin-left: 150px;margin-right: 150px;">
                             <div class="post-header d-flex align-items-center mb-2">
                                 <div>
                                     <h5 class="user-name m-0">{{ $post->user ? $post->user->name : 'Usuario Anónimo' }}</h5>

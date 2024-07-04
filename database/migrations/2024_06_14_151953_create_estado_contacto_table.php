@@ -21,7 +21,6 @@ class CreateEstadoContactoTable extends Migration
 
         Schema::table('contactos', function (Blueprint $table) {
             $table->unsignedBigInteger('estado_id')->nullable()->after('fecha_revision');
-
             $table->foreign('estado_id')->references('id')->on('estado_contacto')->onDelete('set null');
         });
     }

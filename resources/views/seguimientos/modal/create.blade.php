@@ -1,5 +1,4 @@
-
-<section class="section" style="padding: 20px; background-color: #f4f6f9;">
+<section class="section">
     <div class="container">
         <div class="card shadow-sm">
             <div class="card-body">
@@ -11,41 +10,35 @@
                     <div class="row">
                         <!-- Información del paciente -->
                         <div class="col-md-6">
+
                             <div class="form-group">
                                 <label for="nombre_paciente">
                                     <i class="fas fa-user mr-2"></i> Nombre del Paciente
                                 </label>
-                                <input type="text" class="form-control" id="nombre_paciente" name="nombre_paciente" placeholder="Ingrese el nombre del paciente" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="edad">
-                                    <i class="fas fa-birthday-cake mr-2"></i> Edad
-                                </label>
-                                <input type="number" class="form-control" id="edad" name="edad" placeholder="Ingrese la edad del paciente" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="genero">
-                                    <i class="fas fa-venus-mars mr-2"></i> Género
-                                </label>
-                                <select class="form-control" id="genero" name="genero" required>
-                                    <option value="" disabled selected>Seleccione el género</option>
-                                    <option value="Masculino">Masculino</option>
-                                    <option value="Femenino">Femenino</option>
-                                    <option value="Otro">Otro</option>
+                                <select class="form-control" id="nombre_paciente" name="nombre_paciente" required>
+                                    <option value="" disabled selected>Seleccione un paciente</option>
+                                    @foreach($pacientes as $paciente)
+                                    <option value="{{ $paciente->id }}">{{ $paciente->name }} {{ $paciente->ape_pat }}</option>
+                                    @endforeach
                                 </select>
                             </div>
+
+
+
                             <div class="form-group">
                                 <label for="diagnostico">
                                     <i class="fas fa-stethoscope mr-2"></i> Diagnóstico
                                 </label>
-                                <textarea class="form-control" id="diagnostico" name="diagnostico" rows="3" placeholder="Ingrese el diagnóstico del paciente" required></textarea>
+                                <textarea class="form-control" id="diagnostico" name="diagnostico" rows="3" placeholder="Ingrese el diagnóstico del paciente" required style="height: 150px;"></textarea>
                             </div>
+
                             <div class="form-group">
                                 <label for="fecha_inicio">
                                     <i class="fas fa-calendar-alt mr-2"></i> Fecha de Inicio
                                 </label>
-                                <input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio" required>
+                                <input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio" value="{{ $fechaActual }}" required>
                             </div>
+
                         </div>
                         <!-- Información del seguimiento -->
                         <div class="col-md-6">
@@ -59,32 +52,22 @@
                                 <label for="medicacion">
                                     <i class="fas fa-pills mr-2"></i> Medicación
                                 </label>
-                                <textarea class="form-control" id="medicacion" name="medicacion" rows="3" placeholder="Ingrese la medicación recetada" required></textarea>
+                                <textarea style="height: 150px;" class="form-control" id="medicacion" name="medicacion" rows="3" placeholder="Ingrese la medicación recetada" required></textarea>
                             </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label for="proxima_cita">
                                     <i class="fas fa-calendar-check mr-2"></i> Próxima Cita
                                 </label>
-                                <input type="date" class="form-control" id="proxima_cita" name="proxima_cita" required>
+                                <input type="date" class="form-control" id="fecha_fin" name="fecha_fin" required>
                             </div>
-                            <div class="form-group">
-                                <label for="archivo">
-                                    <i class="fas fa-file-upload mr-2"></i> Subir Archivo
-                                </label>
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="archivo" name="archivo">
-                                    <label class="custom-file-label" for="archivo">Seleccionar archivo</label>
-                                </div>
-                            </div>
+                            -->
                         </div>
                     </div>
                     <div class="text-center mt-4">
-                        <button type="submit" class="btn btn-success btn-lg">
-                            <i class="fas fa-save mr-2"></i> Guardar Seguimiento
+                        <button type="submit" class="btn btn-warning" style="margin-right: 20px;">
+                            <i class="fas fa-save mr-2"></i> Guardar
                         </button>
-                        <a href="{{ route('seguimientos.index') }}" class="btn btn-secondary btn-lg">
-                            <i class="fas fa-times mr-2"></i> Cancelar
-                        </a>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                     </div>
                 </form>
             </div>
