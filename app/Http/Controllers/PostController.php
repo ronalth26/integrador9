@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Category;
-
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -33,6 +33,7 @@ class PostController extends Controller
             return $view;
         }
     }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -43,25 +44,28 @@ class PostController extends Controller
             'status' => 'required|in:1,2',
             'id_user' => 'required|exists:users,id',
             'id_category' => 'required|exists:categories,id',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Añadir validación para imagen
         ]);
-        $post = Post::create([
-            'name' => $request->name,
-            'slug' => $request->slug,
-            'extract' => $request->extract,
-            'body' => $request->body,
-            'status' => $request->status,
-            'id_user' => $request->id_user,
-            'id_category' => $request->id_category,
-        ]);
+
+        $post = new Post($request->all());
+
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('images', 'public');
+            $post->image = $path;
+        }
+
+        $post->save();
 
         return redirect()->route('posts.index');
     }
+
     public function show($id)
-{
-    $post = Post::findOrFail($id);
-    return view('posts.show', compact('post'));
-}
-public function edit($id)
+    {
+        $post = Post::findOrFail($id);
+        return view('posts.show', compact('post'));
+    }
+
+    public function edit($id)
     {
         $post = Post::findOrFail($id);
         $users = User::all();
@@ -79,18 +83,21 @@ public function edit($id)
             'status' => 'required|in:1,2',
             'id_user' => 'required|exists:users,id',
             'id_category' => 'required|exists:categories,id',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Añadir validación para imagen
         ]);
 
         $post = Post::findOrFail($id);
-        $post->update([
-            'name' => $request->name,
-            'slug' => $request->slug,
-            'extract' => $request->extract,
-            'body' => $request->body,
-            'status' => $request->status,
-            'id_user' => $request->id_user,
-            'id_category' => $request->id_category,
-        ]);
+        $post->fill($request->all());
+
+        if ($request->hasFile('image')) {
+            if ($post->image) {
+                Storage::delete($post->image);
+            }
+            $path = $request->file('image')->store('images');
+            $post->image = $path;
+        }
+
+        $post->save();
 
         return redirect()->route('posts.index');
     }
@@ -98,6 +105,9 @@ public function edit($id)
     public function destroy($id)
     {
         $post = Post::findOrFail($id);
+        if ($post->image) {
+            Storage::delete($post->image);
+        }
         $post->delete();
         return redirect()->route('posts.index');
     }

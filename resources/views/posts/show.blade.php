@@ -17,6 +17,7 @@
                         <p><strong>Usuario:</strong> {{ $post->user ? $post->user->name : 'N/A' }}</p>
                         <p><strong>Categoría:</strong> {{ $post->category ? $post->category->name : 'N/A' }}</p>
                         <p><strong>Estado:</strong> {{ $post->status == 2 ? 'Publicado' : 'Borrador' }}</p>
+                        <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->name }}">
                         <a href="{{ route('posts.index') }}" class="btn btn-primary">Volver</a>
                     </div>
                 </div>
