@@ -34,6 +34,9 @@ class User extends Authenticatable
         'p1',
         'p2',
         'p3',
+        'feedback',
+        'consulta',
+        'post',
     ];
 
     /**

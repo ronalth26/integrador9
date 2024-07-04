@@ -176,6 +176,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Jorenvh\share\Providers\ShareServiceProvider::class,
 
         //Spatie
         Spatie\Permission\PermissionServiceProvider::class,
@@ -195,6 +196,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // ...
+        'share'=>Jorenvh\Share\ShareFacade::class,
     ])->toArray(),
 
 ];

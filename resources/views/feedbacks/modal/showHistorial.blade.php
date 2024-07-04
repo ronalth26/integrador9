@@ -22,8 +22,11 @@
                                         <label for="fechaFinal">Fecha Final:</label>
                                         <input type="date" id="fechaFinal" class="form-control" name="fecha_final">
                                     </div>
-                                    <div class="col-md-12 text-right mt-2">
-                                        <button type="button" id="filtrarBtn" class="btn btn-primary">Filtrar</button>
+                                    <div class="col-md-6 ">
+                                        <input type="text" id="buscar" class="form-control w-100 p-1 mt-2" name="buscar" placeholder="Buscar">
+                                    </div>
+                                    <div class="col-md-6 text-center mt-2">
+                                        <button type="button" id="filtrarBtn" class="btn btn-primary w-100">Filtrar</button>
                                     </div>
                                 </div>
                             </form>
@@ -58,45 +61,49 @@
                     </div>
                 </div>
             </div>
-<<<<<<< HEAD
+{{-- <<<<<<< HEAD --}}
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 
 <script>
     $(document).ready(function() {
         $('#filtrarBtn').on('click', function() {
             var fechaInicio = $('#fechaInicio').val();
             var fechaFinal = $('#fechaFinal').val();
+            var buscar = $('#buscar').val().toLowerCase();
 
-            $('#feedbacksTableBody tr').filter(function() {
+            $('#feedbacksTableBody tr').each(function() {
                 var fecha = $(this).find('td:nth-child(3)').text();
-                if (fechaInicio && fecha < fechaInicio) {
-                    return true;
-                }
-                if (fechaFinal && fecha > fechaFinal) {
-                    return true;
-                }
-                return false;
-            }).hide();
+                var textoFila = $(this).text().toLowerCase();
 
-            $('#feedbacksTableBody tr').filter(function() {
-                var fecha = $(this).find('td:nth-child(3)').text();
-                if ((fechaInicio && fecha >= fechaInicio) && (fechaFinal && fecha <= fechaFinal)) {
-                    return true;
+                var mostrarFila = true;
+
+                // Filtrar por fecha
+                if (fechaInicio && fechaFinal) {
+                    mostrarFila = mostrarFila && (fecha >= fechaInicio && fecha <= fechaFinal);
+                } else if (fechaInicio) {
+                    mostrarFila = mostrarFila && (fecha >= fechaInicio);
+                } else if (fechaFinal) {
+                    mostrarFila = mostrarFila && (fecha <= fechaFinal);
                 }
-                if (fechaInicio && !fechaFinal && fecha >= fechaInicio) {
-                    return true;
+
+                // Filtrar por búsqueda de texto
+                if (buscar) {
+                    mostrarFila = mostrarFila && textoFila.includes(buscar);
                 }
-                if (!fechaInicio && fechaFinal && fecha <= fechaFinal) {
-                    return true;
+
+                if (mostrarFila) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
                 }
-                return false;
-            }).show();
+            });
         });
     });
 </script>
-
+{{-- 
 =======
             <div class="modal-body">
                 <table class="table table-striped">
@@ -130,4 +137,4 @@
         </div>
     </div>
 </div>
->>>>>>> 91d00a000751bb1f5dd4799d27dc9b52c822cf4f
+>>>>>>> 91d00a000751bb1f5dd4799d27dc9b52c822cf4f --}}

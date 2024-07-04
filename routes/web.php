@@ -11,8 +11,12 @@ use App\Http\Controllers\ContactoController;
 use App\Http\Controllers\EspecialistaController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\EstadosController;
+use App\Http\Controllers\PermisosController;
 use App\Models\Feedback;
+use App\Http\Controllers\RevisionController;
+use App\Http\Controllers\VerificacionController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\ShareButtonsController;
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 /*
@@ -46,11 +50,17 @@ Route::group(['middleware' => ['auth']], function(){
     Route::resource('contactos', ContactoController::class);
     Route::resource('posts', PostController::class);
     Route::resource('estados', EstadosController::class);
+    Route::resource('permisos', PermisosController::class);
+    Route::resource('revision', RevisionController::class);
+    Route::resource('verificacion', VerificacionController::class);
 });
 
+Route::get('/post',[ShareButtonsController::class,'share']);
+
+Route::put('/verificacion/{id}', [VerificacionController::class, 'update'])->name('verificacion.update');
 
 
-
+Route::post('/revision/upload', [RevisionController::class, 'upload'])->name('revision.upload');
 
 Route::get('usuarios.createEspecialista', [UsuarioController::class, 'createEspecialista'])->name('usuarios.createEspecialista');
 

@@ -15,8 +15,11 @@
                     <label for="fechaFinal">Fecha Final:</label>
                     <input type="date" id="fechaFinal" class="form-control" name="fecha_final">
                 </div>
-                <div class="col-md-12 text-right mt-2">
-                    <button type="button" id="filtrarBtn" class="btn btn-primary">Filtrar</button>
+                <div class="col-md-6 ">
+                    <input type="text" id="buscar" class="form-control w-100 p-1 mt-2" name="buscar" placeholder="Buscar">
+                </div>
+                <div class="col-md-6 text-center mt-2">
+                    <button type="button" id="filtrarBtn" class="btn btn-primary w-100">Filtrar</button>
                 </div>
             </div>
         </form>
@@ -126,24 +129,39 @@
         });
     </script>
 
+<script>
+    $(document).ready(function() {
+        $('#filtrarBtn').on('click', function() {
+            var fechaInicio = $('#fechaInicio').val();
+            var fechaFinal = $('#fechaFinal').val();
+            var buscar = $('#buscar').val().toLowerCase();
 
-@section('scripts')
-    <script>
-        $(document).ready(function() {
-            $('#filtrarBtn').on('click', function() {
-                var fechaInicio = $('#fechaInicio').val();
-                var fechaFinal = $('#fechaFinal').val();
+            $('#feedbacksTableBody tr').each(function() {
+                var fecha = $(this).find('td:nth-child(3)').text();
+                var textoFila = $(this).text().toLowerCase();
 
-                $('#feedbacksTableBody tr').each(function() {
-                    var fecha = $(this).find('td:nth-child(3)').text(); // Obtiene la fecha de la tercera columna
+                var mostrarFila = true;
 
-                    // Filtra las filas según las fechas seleccionadas
-                    if ((fechaInicio && fecha >= fechaInicio) && (fechaFinal && fecha <= fechaFinal)) {
-                        $(this).show(); // Muestra la fila si cumple con el rango de fechas
-                    } else {
-                        $(this).hide(); // Oculta la fila si no cumple con el rango de fechas
-                    }
-                });
+                // Filtrar por fecha
+                if (fechaInicio && fechaFinal) {
+                    mostrarFila = mostrarFila && (fecha >= fechaInicio && fecha <= fechaFinal);
+                } else if (fechaInicio) {
+                    mostrarFila = mostrarFila && (fecha >= fechaInicio);
+                } else if (fechaFinal) {
+                    mostrarFila = mostrarFila && (fecha <= fechaFinal);
+                }
+
+                // Filtrar por búsqueda de texto
+                if (buscar) {
+                    mostrarFila = mostrarFila && textoFila.includes(buscar);
+                }
+
+                if (mostrarFila) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
             });
         });
-    </script>
+    });
+</script>

@@ -20,14 +20,15 @@
                         @else
                             <table class="table table-striped">
                                 <thead class="bg-primary">
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Nombre</th>
-                                        <th>Slug</th>
-                                        <th>Extracto</th>
-                                        <th>Usuario</th>
-                                        <th>Categoría</th>
-                                        <th>Acciones</th>
+                                <tr>
+                                        <th class="text-light">ID</th>
+                                        <th class="text-light">Nombre</th>
+                                        <th class="text-light">Slug</th>
+                                        <th class="text-light">Extracto</th>
+                                        <th class="text-light">Usuario</th>
+                                        <th class="text-light">Categoría</th>
+                                        <th class="text-light">Acciones</th>
+                                        <th class="text-light">Publicar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -47,6 +48,11 @@
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
                                             </form>
+                                        </td>
+                                        <td>
+                                            <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.integrador9.com&quote={{ urlencode($post->name) }}" target="_blank">
+                                                <i class="fab fa-facebook"></i> Comparte tu animo
+                                            </a>
                                         </td>
                                     </tr>
                                     @endforeach

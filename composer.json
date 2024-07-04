@@ -9,6 +9,7 @@
         "fruitcake/laravel-cors": "^2.0.5",
         "guzzlehttp/guzzle": "^7.2",
         "infyomlabs/laravel-ui-stisla": "^4.0",
+        "jorenvanhocht/laravel-share": "^4.2",
         "laravel/framework": "^9.0",
         "laravel/sanctum": "^2.14",
         "laravel/tinker": "^2.7",
