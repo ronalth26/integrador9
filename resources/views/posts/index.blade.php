@@ -53,6 +53,13 @@
                                         <i class="fas fa-trash-alt"></i> Eliminar
                                     </button>
                                 </form>
+
+                                <td>
+                                    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.integrador9.com&quote={{ urlencode($post->name) }}" target="_blank">
+                                        <i class="fab fa-facebook"></i> Comparte tu animo
+                                    </a>
+                                </td>
+
                             </div>
                         </div>
                         @endforeach

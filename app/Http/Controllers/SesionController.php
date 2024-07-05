@@ -105,7 +105,6 @@ class SesionController extends Controller
         $seguimiento = Seguimiento::findOrFail($sesione);
         $seguimiento->estado = 4; // Estado de finalizadoo
         $seguimiento->save();
-
         return redirect()->route('seguimientos.index');
     }
     public function show($sesione)

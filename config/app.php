@@ -176,7 +176,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        Jorenvh\share\Providers\ShareServiceProvider::class,
+        // Jorenvh\share\Providers\ShareServicgiteProvider::class,
 
         //Spatie
         Spatie\Permission\PermissionServiceProvider::class,
