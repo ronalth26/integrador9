@@ -103,7 +103,7 @@ class SesionController extends Controller
     public function destroy($sesione)
     {
         $seguimiento = Seguimiento::findOrFail($sesione);
-        $seguimiento->estado = 4; // Estado de finalizado
+        $seguimiento->estado = 4; // Estado de finalizadoo
         $seguimiento->save();
 
         return redirect()->route('seguimientos.index');
